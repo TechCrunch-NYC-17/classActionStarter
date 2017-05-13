@@ -2,7 +2,7 @@ const path = require('path')
 
 module.exports = {
   context: __dirname,
-  entry: ['whatwg-fetch', './client/app/App.jsx'],
+  entry: ['whatwg-fetch', './client/index.jsx'],
   output: {
     path: path.join(__dirname, '/client/src'),
     publicPath: '/src/',
