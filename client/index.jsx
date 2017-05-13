@@ -15,7 +15,7 @@ const store = createStore(
 ReactDOM.render(
   <MuiThemeProvider>
     <Provider store={store}>
-      <App />
+      <Router history={hashHistory} routes={routes} />
     </Provider>
   </MuiThemeProvider>
   , document.getElementById('root'));
