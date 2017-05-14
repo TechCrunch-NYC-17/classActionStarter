@@ -121,7 +121,7 @@ class Form extends Component {
             </div>
           </div>
           <div className='button-line'>
-            <label>Upload Picture:</label><input type='file' name='case' onChange={this.fileUpload} />
+            <label style={{fontFamily: 'Source Sans Pro'}}>Upload Picture:</label><input type='file' name='case' onChange={this.fileUpload} />
           </div>
           <div className='button-line'>
             <RaisedButton

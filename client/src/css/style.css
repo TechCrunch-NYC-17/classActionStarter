@@ -16,15 +16,14 @@ body {
 }
 
 .children {
-  padding-top: 50px;
-  padding-left: 50px;
-  height: 100%;
-  width: 100%;
+  padding: 50px;
 }
 
 .cards-container {
   margin-right: 50px;
   margin-top: 3%;
+  height: 50%;
+  width: 50%;
 }
 
 .image {
