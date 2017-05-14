@@ -12,6 +12,7 @@ body {
 
 .app-bar-container {
   position: fixed;
+  margin-top: 10px;
 }
 
 .children {

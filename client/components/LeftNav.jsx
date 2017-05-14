@@ -13,8 +13,8 @@ const LeftNav = ({ auth, open, handleToggle, history }) => {
   // const leftNavUnAuth = [{ link: '/login', label: 'Log In' }, { link: '/signup', label: 'Sign Up' }];
   const leftNavAuth = [
     { link: '/dashboard', label: 'Dashboard' },
-    { link: '/form', label: 'Start Action' },
-    { link: '/lawsuits', label: 'Pending Lawsuits' },
+    { link: '/form', label: 'Start' },
+    { link: '/lawsuits', label: 'Join Action' },
     { link: '/myaccount', label: 'My Account' }
   ];
 
