@@ -6,6 +6,7 @@ import myAccount from './myAccountReducer';
 import leftNavReducer from './leftNavReducer';
 import login from './loginReducer';
 import lawsuit from './lawsuitReducer';
+import lawsuitID from './lawsuitcreation';
 import { reducer as formReducer } from 'redux-form';
 import lawsuitinfo from './lawsuitInfoReducer';
 
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   myAccount,
   login,
   lawsuit,
-  lawsuitinfo
+  lawsuitinfo,
+  lawsuitID
 });
 
 export default rootReducer;

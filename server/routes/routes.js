@@ -1,6 +1,13 @@
 const lawsuits = require('../controllers/lawsuits');
 const users = require('../controllers/users');
 const token = require('../jwt/jwt');
+var awskeys = require('../aws/aws');
+var aws = require('aws-sdk');
+aws.config.update({
+  secretAccessKey: awskeys.secretAccessKey,
+  accessKeyId: awskeys.keyId,
+  region: 'us-west-2'
+});
 
 module.exports = (app, passport) => {
   app.get('/fetch/lawsuits', lawsuits.fetch);
@@ -31,7 +38,6 @@ module.exports = (app, passport) => {
     failureRedirect: '/#/'
   }),
     (req, res) => {
-
       res.send({ token: passport.token, user: passport.user, picture: `https://robohash.org/${passport.user.displayname}` });
     });
 
@@ -69,5 +75,19 @@ module.exports = (app, passport) => {
 
   app.get('/get-info', (req, res) => {
     res.send({ token: passport.token, user: passport.user, picture: passport.photo });
+  });
+
+  app.post('/uploadfile', (req, res) => {
+    res.sendStatus('201')
+  });
+
+  app.get('/photos/:imgurl', function (req, res) {
+    var imgname = req.params.imgurl;
+    console.log(imgname)
+    var s3 = new aws.S3();
+    s3.getObject(
+      {Bucket: 'smartfolio',
+        Key: `${imgname}`}
+    ).createReadStream().pipe(res);
   });
 };

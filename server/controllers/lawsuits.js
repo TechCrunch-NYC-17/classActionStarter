@@ -18,10 +18,13 @@ module.exports = {
   },
 
   post: ({ body }, res) => {
-    const { title, category, description } = body;
-    db.insert({ title, category, description })
+    const { title, category, size, description, filename } = body;
+    db.insert({ title, category, size, description, filename })
       .into('lawsuits')
-      .then(() => res.status(201).end());
+      .then((data) => {
+        console.log(data)
+        res.send(data);
+      });
   },
 
   participate: ({ body }, res) => {
@@ -55,5 +58,4 @@ module.exports = {
       .then(data => res.send(data[0][0]));
   }
 };
-
 

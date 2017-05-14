@@ -1,6 +1,16 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
+var multer = require('multer');
+var awskeys = require('./aws/aws');
+var compression = require('compression');
+var multerS3 = require('multer-s3');
+var aws = require('aws-sdk');
+aws.config.update({
+  secretAccessKey: awskeys.secretAccessKey,
+  accessKeyId: awskeys.keyId,
+  region: 'us-west-2'
+});
 const path = require('path');
 const cors = require('cors');
 const session = require('express-session');
@@ -17,6 +27,7 @@ const User = require('./models/user');
 var app = express();
 var port = process.env.port || 8080;
 app.use(morgan('dev'));
+app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 passport.serializeUser((user, done) => done(null, user));
@@ -92,7 +103,6 @@ passport.use('local-login', new LocalStrategy({
         result = JSON.parse(JSON.stringify(result[0]));
         bcrypt.compare(password, result[0].password, (err, resp) => {
           if (err) console.error(err);
-          console.log(resp)
           if (resp) {
             passport.user = {id: result[0].id, displayname: result[0].displayname};
             passport.token = token.tokenGenerator(result[0].id);
@@ -121,7 +131,22 @@ app.use(flash());
 app.use(cors());
 app.use(express.static(path.join(__dirname, '/../client/src')));
 app.use(express.static(path.join(__dirname, '/../node_modules/')));
-
+app.use(compression({level: 9}));
+var s3 = new aws.S3();
+var upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'smartfolio',
+    key: function (req, file, cb) {
+      console.log(req.headers)
+      var string = `${req.headers.lawsuit} ${file.originalname}`;
+      cb(null, string);
+    }
+  })
+}).fields([{
+  name: 'file', maxcount: 1
+}]);
+app.use(upload)
 routes(app, passport);
 app.listen(port, () => {
   console.log('Listening on port: 8080');
