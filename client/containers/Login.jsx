@@ -19,13 +19,37 @@ class Login extends Component {
       open: false
     };
   }
+  backgroundStyle = {
+    backgroundImage: "url('/assets/splash_04.jpeg')",
+    backgroundSize: 'cover',
+    height: '80%',
+    width: '100%',
+    marginTop: '3%',
+    position: 'fixed',
+    opacity: '.9'
+  }
+
   paperStyle = {
-    height: 600,
+    height: 400,
     width: 600,
     margin: 20,
     textAlign: 'center',
     display: 'inline-block'
   }
+
+  loginBox = {
+    width: '45%',
+    minWidth: '100px',
+    height: '70%',
+    position: 'absolute',
+    top: '0',
+    bottom: '0',
+    left: '0',
+    right: '0',
+    margin: 'auto',
+    opacity: '0.9'
+  }
+
   onSubmit = (inputs) => {
     this.props.postLogin(inputs)
       .then((data) => {
@@ -77,10 +101,10 @@ class Login extends Component {
   render () {
     const { handleSubmit, pristine, submitting, touch, field, errors } = this.props;
     return (
-      <div className='children'>
+      <div className='children' style={this.backgroundStyle}>
+        <div style={this.loginBox}>
         <Paper style={this.paperStyle} zDepth={5}>
-          <div className='children'>
-            <h1 className='header'>Start A Class Action Suit</h1>
+            <h1 className='header'>Login</h1>
             <form onSubmit={handleSubmit(this.onSubmit)} className='form'>
               <div className='fields'>
                 <div className='field-line'>
@@ -98,7 +122,7 @@ class Login extends Component {
                 />
                 <RaisedButton
                   type='submit'
-                  label='Submit'
+                  label='Login'
                   disabled={pristine || submitting}
                   className='button'
                 />
@@ -110,8 +134,8 @@ class Login extends Component {
               href='/auth/facebook'
               className='button'
             />
-          </div >
-        </Paper>
+          </Paper>
+        </div>  
         <SignUp open={this.state.open} close={this.handleClose} />
 
       </div>

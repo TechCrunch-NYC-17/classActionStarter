@@ -18,6 +18,8 @@ body {
 .children {
   padding-top: 50px;
   padding-left: 50px;
+  height: 100%;
+  width: 100%;
 }
 
 .cards-container {
@@ -29,6 +31,12 @@ body {
   width: 30%;
   height: 30%;
 }
+
+#dashboard {
+  background-image: url('/assets/splash_05.jpg');
+  background-size: cover;
+}
+
 
 #dashboard {
   width: 40%;
