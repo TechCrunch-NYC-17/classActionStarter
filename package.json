@@ -21,6 +21,7 @@
     "express": "^4.14.1",
     "express-session": "^1.15.1",
     "history": "^4.6.1",
+    "flash": "^1.1.0",
     "jsonwebtoken": "^7.3.0",
     "knex": "^0.12.6",
     "lodash.escape": "^4.0.1",
