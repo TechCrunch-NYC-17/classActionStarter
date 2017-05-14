@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { toggleLeftNav } from '../actions/index';
-
 import { getUsername, isUserAuthenticated } from '../modules/auth';
-
 import LeftNav from '../components/LeftNav';
+import LawsuitsList from './LawSuitsList';
+
 
 class App extends Component {
   componentWillMount () {
@@ -29,6 +29,7 @@ class App extends Component {
           handleToggle={this.handleToggle}
         />
         <div>Hello World</div>
+        <LawsuitsList />
       </div>
     );
   }
