@@ -9,7 +9,6 @@ import { fetchMyList } from '../actions/DashboardAction';
 class Dashboard extends Component {
   componentWillMount() {
     const userID = getUserId();
-    console.log('user ID : ', userID);
     this.props.fetchMyList(userID);
   }
 
