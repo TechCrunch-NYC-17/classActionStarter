@@ -13,7 +13,6 @@ export const postLawsuit = obj => {
 };
 
 export const postSignUp = obj => {
-
   return dispatch => axios.post('/signup', obj)
   .then(({ data }) => {
     dispatch({ type: 'POST_SignUp', payload: data });
