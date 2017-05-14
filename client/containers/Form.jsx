@@ -29,8 +29,11 @@ class Form extends Component {
       .then(() => {
         var data = new FormData();
         data.append('file', this.state.file);
-        data.append('name', this.props.lawsuitID.lawsuitID[0]);
-        return axios.post('./uploadfile', data);
+        return axios.post('./uploadfile', data, {
+          headers: {
+            'lawsuit': `${this.props.lawsuitID.lawsuitID[0]}`
+          }
+        });
       }).then(result => result).then(() => {
         this.props.history.push('/lawsuits');
       });
