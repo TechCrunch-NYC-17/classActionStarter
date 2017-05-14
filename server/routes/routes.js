@@ -78,11 +78,12 @@ module.exports = (app, passport) => {
   });
 
   app.post('/uploadfile', (req, res) => {
-    console.log(req.files);
+    res.sendStatus('201')
   });
 
   app.get('/photos/:imgurl', function (req, res) {
     var imgname = req.params.imgurl;
+    console.log(imgname)
     var s3 = new aws.S3();
     s3.getObject(
       {Bucket: 'smartfolio',

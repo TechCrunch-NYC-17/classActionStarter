@@ -20,12 +20,12 @@ class Lawsuit extends Component {
 
   renderLawsuit() {
     if (this.props.lawsuit.lawsuit) {
-      console.log('rendering : ', this.props.lawsuit.lawsuit)
-      const { title, category, size, description } = this.props.lawsuit.lawsuit;
+      const { id, title, category, size, description, filename } = this.props.lawsuit.lawsuit;
+      console.log(id, filename)
       return (
         <Card>
           <CardMedia>
-            <img src='http://placehold.it/600x300g' />
+            <img src={`/photos/${id} ${filename}`} />
           </CardMedia>
           <CardTitle title={title} subtitle={category} />
           <CardText>

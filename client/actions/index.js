@@ -10,7 +10,7 @@ export const toggleLeftNav = bool => ({ type: TOGGLE_LEFT_NAV, payload: !bool })
 export const postLawsuit = obj => {
   return dispatch => axios.post('/post/lawsuit', obj)
     .then(({ data }) => {
-      dispatch({ type: 'POST_LAWSUIT', payload: obj });
+      dispatch({ type: 'POST_LAWSUIT', payload: data });
     });
 };
 
@@ -30,7 +30,7 @@ export const postSignUp = obj => {
 };
 
 export const postLogin = obj => {
-  console.log(obj)
+  console.log(obj);
   return dispatch => axios.post('/login', obj)
   .then(({ data }) => {
     console.log(data);

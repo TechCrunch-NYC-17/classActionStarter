@@ -21,25 +21,22 @@ class Dashboard extends Component {
             <CardHeader
               title={item.title}
               subtitle={item.category}
-            />        
+            />
             <CardMedia>
               <img src='http://placehold.it/300x150g' />
             </CardMedia>
             <CardActions>
               <FlatButton label='More' onClick={() => this.props.history.push(`/lawsuit/${item.id}`)} />
               <FlatButton label='Share' />
-            </CardActions>            
+            </CardActions>
           </Card>
         );
       });
     }
   }
-<<<<<<< HEAD
-  render() {
-    if (this.props.mylist === undefined) return <div>loading</div>;
-=======
+
   render () {
->>>>>>> set up form data
+    if (this.props.mylist === undefined) return <div>loading</div>;
     return (
       <div className='children' id='dashboard'>
         {this.props.mylist.map(item => {
@@ -58,7 +55,7 @@ class Dashboard extends Component {
                 <FlatButton label='Share' />
               </CardActions>
             </Card>
-          )
+          );
         })}
       </div>
     );

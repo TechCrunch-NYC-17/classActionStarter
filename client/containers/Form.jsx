@@ -29,6 +29,7 @@ class Form extends Component {
       .then(() => {
         var data = new FormData();
         data.append('file', this.state.file);
+        console.log(this.props.lawsuitID)
         return axios.post('./uploadfile', data, {
           headers: {
             'lawsuit': `${this.props.lawsuitID.lawsuitID[0]}`
