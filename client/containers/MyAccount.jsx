@@ -9,24 +9,29 @@ import {
 import { getUsername } from '../modules/auth';
 import { fetchMyAccount } from '../actions/MyAccountAction';
 
-
 class MyAccount extends Component {
   componentWillMount () {
     const username = getUsername();
     this.props.fetchMyAccount(username);
   }
 
-  renderUserInfo() {
-    console.log('my account this.props : ', this.props);
-    if (this.props) {
-      <Table>
-        <TableBody>
-          <TableRow>
-            <TableRowColumn>Username</TableRowColumn>
-            <TableRowColumn>{this.props.username}</TableRowColumn>
-          </TableRow>
-        </TableBody>
-      </Table>;
+  renderUserInfo () {
+    if (this.props.myaccount) {
+      const { username, displayname } = this.props.myaccount;
+      return (
+        <Table>
+          <TableBody>
+            <TableRow>
+              <TableRowColumn>Username</TableRowColumn>
+              <TableRowColumn>{displayname}</TableRowColumn>
+            </TableRow>
+            <TableRow>
+              <TableRowColumn>Email</TableRowColumn>
+              <TableRowColumn>{username}</TableRowColumn>
+            </TableRow>
+          </TableBody>
+        </Table>
+      );
     }
   }
 
@@ -35,12 +40,12 @@ class MyAccount extends Component {
       <div className='children'>
         {this.renderUserInfo()}
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = ({ myAccount }) => ({
-  username: myAccount.username
+  myaccount: myAccount.myaccount
 });
 
 export default connect(mapStateToProps, { fetchMyAccount })(MyAccount);
