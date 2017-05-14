@@ -1,3 +1,20 @@
+body {
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+
 .header {
   font-family: 'Source Sans Pro'
+}
+
+.app-bar-container {
+  position: fixed;
+}
+
+.children {
+  padding-top: 50px;
+  padding-left: 50px;
 }

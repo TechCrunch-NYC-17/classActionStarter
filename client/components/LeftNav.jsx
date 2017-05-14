@@ -23,7 +23,6 @@ const LeftNav = ({ auth, open, handleToggle, history }) => {
       <MenuItem key={index} className='left-navmenu-item' onTouchTap={() => handleTouchTap(link)}>{label}</MenuItem>);
 
   const renderDrawer = menu => {
-    console.log(handleToggle);
     return (
       <Drawer open={open}>
         <Menu onItemTouchTap={handleToggle}>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const MyAccount = () => (
-  <div>
+  <div className='children'>
     MyAccount!
   </div>
 );

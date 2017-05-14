@@ -26,14 +26,14 @@ ReactDOM.render(
     <Router history={hashHistory}>
       <Provider store={store}>
         <div>
-          <Route component={App}>
+          <App>
             <Switch>
               <Route path='/form' component={Form} />
               <Route path='/dashboard' component={Dashboard} />
               <Route path='/myaccount' component={myAccount} />
               <Route path='/lawsuits' component={LawsuitsList} />
             </Switch>
-          </Route>
+          </App>
         </div>
       </Provider>
     </Router>
