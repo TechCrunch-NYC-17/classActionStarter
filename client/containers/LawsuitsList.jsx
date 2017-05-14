@@ -4,26 +4,26 @@ import { fetchLawsuitsList } from '../actions/lawsuitsListAction';
 import { withRouter } from 'react-router';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import { participate } from '../actions/participateAction';
+import participate from '../actions/participateAction';
 import { getUserId } from '../modules/auth';
 import { fetchLawsuitInfo, fetchLawsuitUsers } from '../actions/lawsuitInfoAction';
 import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
 
 class LawsuitsList extends Component {
-  componentWillMount() {
+  componentWillMount () {
     this.props.fetchLawsuitsList();
-    this.state = { 
+    this.state = {
       open: false,
       info: {},
-      count: 1,
+      count: 1
     };
   }
 
   handleOpen = (infoObj) => {
     this.setState({info: infoObj});
     this.props.fetchLawsuitUsers({ lawsuitID: infoObj.id })
-      .then(data => { this.setState({ count: (data.payload[0].length) })});
+      .then(data => { this.setState({ count: (data.payload[0].length) }); });
     this.setState({open: true});
   };
 
@@ -33,10 +33,6 @@ class LawsuitsList extends Component {
 
   addParticipate = (lawsuitId) => {
     const userId = getUserId();
-    this.props.participate({
-      lawsuitID: lawsuitId,
-      userID: userId
-    })
 
     participate({
       lawsuitID: lawsuitId,
@@ -49,12 +45,12 @@ class LawsuitsList extends Component {
   //   this.props.fetchLawsuitUsers({ lawsuitID: lawsuitId }).then(data => console.log(data));
   // }
 
-  render() {
+  render () {
     if (this.props.lawsuits === undefined) return <div>loading</div>;
     const actions = [
       <FlatButton
-        label="Close"
-        primary={true}
+        label='Close'
+        primary
         onTouchTap={this.handleClose}
       />
     ];
@@ -67,10 +63,10 @@ class LawsuitsList extends Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-        <CardText>
+          <CardText>
           {this.state.info.description}
-          <hr/>
-           <div>Number of Signatures: {this.state.count}</div>
+          <hr />
+          <div>Number of Signatures: {this.state.count}</div>
         </CardText>
         </Dialog>
 
