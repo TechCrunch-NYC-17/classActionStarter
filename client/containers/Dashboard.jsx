@@ -13,7 +13,7 @@ import {
 
 
 class Dashboard extends Component {
-  componentWillMount () {
+  componentWillMount() {
     const username = getUsername();
     this.props.fetchMyList(username);
   }
@@ -32,22 +32,24 @@ class Dashboard extends Component {
       });
     }
   }
-  render () {
+  render() {
     return (
-      <Table
-        multiSelectable={true} 
-      >
-        <TableHeader>
-          <TableRow>
-            <TableHeaderColumn>ID</TableHeaderColumn>
-            <TableHeaderColumn>Title</TableHeaderColumn>
-            <TableHeaderColumn>Status</TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {this.renderList()}
-        </TableBody>
-      </Table>
+      <div className='children'>
+        <Table
+          multiSelectable={true}
+        >
+          <TableHeader>
+            <TableRow>
+              <TableHeaderColumn>ID</TableHeaderColumn>
+              <TableHeaderColumn>Title</TableHeaderColumn>
+              <TableHeaderColumn>Status</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {this.renderList()}
+          </TableBody>
+        </Table>
+      </div>
     );
   }
 }
