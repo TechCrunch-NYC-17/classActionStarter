@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 import { Field, reduxForm } from 'redux-form';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
@@ -127,5 +128,5 @@ Form = reduxForm({
   validate
 })(Form);
 
-export default connect(mapStateToProps, { postLawsuit })(Form);
+export default withRouter(connect(mapStateToProps, { postLawsuit })(Form));
 
