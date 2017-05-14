@@ -4,7 +4,8 @@ import { fetchLawsuitsList } from '../actions/lawsuitsListAction';
 import { withRouter } from 'react-router';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import { participate } from '../actions/participateAction'
+import { participate } from '../actions/participateAction';
+import { getUserId } from '../modules/auth';
 
 class LawsuitsList extends Component {
   componentWillMount () {
@@ -12,9 +13,10 @@ class LawsuitsList extends Component {
   }
 
   addParticipate = (lawsuitId) => {
-    participate({ 
-      lawsuitID: lawsuitId, 
-      userID: 1
+    const userId = getUserId();
+    this.props.participate({ 
+      lawsuitID: lawsuitId,
+      userID: userId
     })
   }
 
@@ -29,7 +31,7 @@ class LawsuitsList extends Component {
               {lawsuit.description}
           </CardText>
             <CardActions>
-              <FlatButton label='Participate' onClick={() => this.addParticipate(lawsuit.id)}/>
+              <FlatButton label='Participate' onClick={() => this.addParticipate(lawsuit.id)} />
               <FlatButton label='Share' />
             </CardActions>
           </Card>
@@ -43,4 +45,4 @@ const mapStateToProps = ({ lawsuits }) => ({
   ...lawsuits
 });
 
-export default connect(mapStateToProps, { fetchLawsuitsList })(LawsuitsList);
+export default connect(mapStateToProps, { fetchLawsuitsList, participate })(LawsuitsList);

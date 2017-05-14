@@ -24,3 +24,13 @@ body {
   margin-right: 50px;
   margin-top: 3%;
 }
+
+.image {
+  width: 50%;
+  height: 50%;
+}
+
+#dashboard {
+  width: 50%;
+  height: 50%;
+}
