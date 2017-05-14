@@ -7,7 +7,8 @@ const Home = () => {
     console.log(p);
   };
   var divStyle = {
-    'height': '50%',
+    'height': '80%',
+    'width': '100%',
     'marginTop': '6.5%',
     background: 'none',
     'zIndex': '0'
@@ -19,27 +20,35 @@ const Home = () => {
         open
         style={divStyle}
         onTouchTap={() => register('hello')}
+        mobile={true}
+        landscape={true}
       >
         <Slide
-          media={<img src='http://www.icons101.com/icon_png/size_256/id_79394/youtube.png' />}
-          mediaBackgroundStyle={{ backgroundColor: red400 }}
-          contentStyle={{ backgroundColor: red600 }}
-          title='This is a very cool feature'
-          subtitle='Just using this will blow your mind.'
+          media={<img src='/assets/splash_02.jpeg' />}
+          contentStyle={{ backgroundColor: 'transparent', opacity: '0.8' }}
+          mediaBackgroundStyle={{ backgroundColor: 'transparent' }}
+          mediaStyle={{ height: '100%', width: '110%', marginLeft: '-80px'}}
+          title='Ever felt alone about legal issues?'
+          textStyle={{ color: 'black' }}
+          subtitle='Sign up and join the many who share your opinions.'
         />
         <Slide
-          media={<img src='http://www.icons101.com/icon_png/size_256/id_80975/GoogleInbox.png' />}
-          mediaBackgroundStyle={{ backgroundColor: blue400 }}
-          contentStyle={{ backgroundColor: blue600 }}
-          title='Ever wanted to be popular?'
-          subtitle='Well just mix two colors and your are good to go!'
+          media={<img src='/assets/splash_01.jpeg' />}
+          contentStyle={{ backgroundColor: 'transparent', opacity: '0.8' }}
+          mediaBackgroundStyle={{ backgroundColor: 'transparent' }}
+          mediaStyle={{ height: '100%', width: '110%', marginLeft: '-80px' }}  
+          title='Class action has never been easier.'
+          textStyle={{ color: 'black' }}
+          subtitle='It is in fact just a click away.'
         />
         <Slide
-          media={<img src='http://www.icons101.com/icon_png/size_256/id_76704/Google_Settings.png' />}
-          mediaBackgroundStyle={{ backgroundColor: green400 }}
-          contentStyle={{ backgroundColor: green600 }}
-          title='May the force be with you'
-          subtitle='The Force is a metaphysical and ubiquitous power in the Star Wars universe.'
+          media={<img src='/assets/splash_03.jpg' />}
+          contentStyle={{ backgroundColor: 'transparent', opacity: '0.75' }}
+          mediaBackgroundStyle={{ backgroundColor: 'transparent' }}
+          mediaStyle={{ height: '100%', width: '110%', marginLeft: '-80px' }}  
+          title='Together, we can make a difference.'
+          textStyle={{ color: 'black' }}
+          subtitle='Find what class action suits are trending in your area.'
         />
       </AutoRotatingCarousel>
     </div>
