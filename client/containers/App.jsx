@@ -1,35 +1,38 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import { toggleLeftNav } from '../actions/index';
 import { getUsername, isUserAuthenticated } from '../modules/auth';
 import LeftNav from '../components/LeftNav';
-import LawsuitsList from './LawSuitsList';
-
+import Header from '../components/Header';
 
 class App extends Component {
-  componentWillMount () {
-    injectTapEventPlugin();
+  handleToggle = () => {
+    this.props.toggleLeftNav(this.props.open);
   }
 
-  handleToggle () {
-    this.props.toggleLeftNav(true);
-  }
-
-  render () {
+  render = () => {
     const currentUser = getUsername();
     const auth = isUserAuthenticated();
-    console.log(LeftNav);
     return (
       <div>
+        <Header
+          location={this.props.location.pathname}
+          auth={auth}
+          logOut={this.handleLogOut}
+          handleToggle={this.handleToggle}
+          handleClick={this.handleClick}
+          handleTitleClick={() => this.props.history.push('/')}       
+        />
         <LeftNav
           auth={auth}
           user={currentUser}
-          open={true}
+          open={this.props.open}
           handleToggle={this.handleToggle}
         />
-        <div>Hello World</div>
-        <LawsuitsList />
+        <div>
+          {this.props.children}
+        </div>  
       </div>
     );
   }
@@ -41,7 +44,5 @@ function mapStateToProps ({ leftNavToggle }) {
   };
 }
 
-export default connect(mapStateToProps, {
-  toggleLeftNav
-})(App);
+export default withRouter(connect(mapStateToProps, { toggleLeftNav })(App));
 

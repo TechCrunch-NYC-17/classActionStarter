@@ -6,7 +6,6 @@ import MenuItem from 'material-ui/MenuItem';
 import Divider from 'material-ui/Divider';
 
 const LeftNav = ({ auth, open, handleToggle, history }) => {
-  console.log(auth, open, handleToggle);
   const handleTouchTap = (label) => {
     history.push(label);
   };
@@ -18,6 +17,7 @@ const LeftNav = ({ auth, open, handleToggle, history }) => {
     { link: '/lawsuits', label: 'Pending Lawsuits' },
     { link: '/myaccount', label: 'My Account' }
   ];
+
   const renderMenuItems = menu => menu
     .map(({ link, label }, index) =>
       <MenuItem key={index} className='left-navmenu-item' onTouchTap={() => handleTouchTap(link)}>{label}</MenuItem>);
