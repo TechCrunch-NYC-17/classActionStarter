@@ -2,11 +2,22 @@ import React, { Component } from 'react';
 import { AutoRotatingCarousel, Slide } from 'material-auto-rotating-carousel';
 import { green400, green600, blue400, blue600, red400, red600 } from 'material-ui/styles/colors';
 const Home = () => {
+  var register = (p) => {
+    console.log(p)
+  }
+  var divStyle = {
+    'height': '50%',
+    'marginTop': '6.5%',
+    background: 'none',
+    'zIndex': '0'
+  };
   return (
     <div>
       <AutoRotatingCarousel
-        label='Get started'
+        label='Register'
         open
+        style={divStyle}
+        onTouchTap={() => register('hello')}
       >
         <Slide
           media={<img src='http://www.icons101.com/icon_png/size_256/id_79394/youtube.png' />}
