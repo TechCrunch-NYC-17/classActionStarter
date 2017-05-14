@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import debounce from 'lodash/debounce';
 import { Field, reduxForm } from 'redux-form';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import TextField from 'material-ui/TextField';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import Loading from 'react-loading';
 import store from '../index';
@@ -10,12 +13,34 @@ import store from '../index';
 class Form extends Component {
 
   /* -- Calculates distance upon button click --*/
-  onSubmit (inputs) {
+  onSubmit = (inputs) => {
     // store.dispatch({ type: 'FETCHING', payload: true })
   }
-  
+
+  renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
+    <TextField
+      hintText={label}
+      floatingLabelText={label}
+      errorText={touched && error}
+      {...input}
+      {...custom}
+    />
+  );
+
+
+  renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }) => (
+    <SelectField
+      floatingLabelText={label}
+      errorText={touched && error}
+      {...input}
+      onChange={(event, index, value) => input.onChange(value)}
+      children={children}
+      {...custom}
+    />
+  );
+
   /* -- Functional component to render spinner --*/
-  renderSpinner () {
+  renderSpinner = () => {
     if (this.props.fetching) {
       return (
         <div className="spinner">
@@ -23,17 +48,30 @@ class Form extends Component {
         </div>
       );
     }
-  }  
+  }
 
-  render () {
+  render = () => {
     const { handleSubmit, pristine, submitting, touch, field } = this.props;
 
     return (
       <div className="container">
-        <h1 className="header">CHOOSE YOUR JOURNEY</h1>
+        <h1 className="header">Start A Class Action Suit</h1>
         <form onSubmit={handleSubmit(this.onSubmit)} className="form">
           <div className="fields">
-
+            <div className="field-line">
+              <Field name="title" component={this.renderTextField} label="Title" />
+            </div>
+            <div className="field-line">
+              <Field
+                name="category"
+                component={this.renderSelectField}
+                label="Category"
+              >
+                <MenuItem value="criminal" primaryText="Criminal" />
+                <MenuItem value="civil" primaryText="Civil" />
+                <MenuItem value="business" primaryText="Business" />
+              </Field>
+            </div>
           </div>
           <div className="button-line">
             {this.renderSpinner()}
@@ -44,7 +82,7 @@ class Form extends Component {
   }
 }
 
-const mapStateToProps = ({  }) => ({
+const mapStateToProps = ({ }) => ({
 });
 
 Form = reduxForm({
