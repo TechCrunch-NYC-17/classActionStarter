@@ -12,7 +12,7 @@ import store from '../index';
 
 class Form extends Component {
 
-  /* -- Calculates distance upon button click --*/
+  /* -- Calculates distance upon button click -- */
   onSubmit = (inputs) => {
     // store.dispatch({ type: 'FETCHING', payload: true })
   }
@@ -27,7 +27,6 @@ class Form extends Component {
     />
   );
 
-
   renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }) => (
     <SelectField
       floatingLabelText={label}
@@ -39,11 +38,11 @@ class Form extends Component {
     />
   );
 
-  /* -- Functional component to render spinner --*/
+  /* -- Functional component to render spinner -- */
   renderSpinner = () => {
     if (this.props.fetching) {
       return (
-        <div className="spinner">
+        <div className='spinner'>
           <Loading type='bubbles' color='#e3e3e3' />
         </div>
       );
@@ -54,49 +53,49 @@ class Form extends Component {
     const { handleSubmit, pristine, submitting, touch, field } = this.props;
 
     return (
-      <div className="container">
-        <h1 className="header">Start A Class Action Suit</h1>
-        <form onSubmit={handleSubmit(this.onSubmit)} className="form">
-          <div className="fields">
-            <div className="field-line">
-              <Field name="title" component={this.renderTextField} label="Title" />
+      <div className='children'>
+        <h1 className='header'>Start A Class Action Suit</h1>
+        <form onSubmit={handleSubmit(this.onSubmit)} className='form'>
+          <div className='fields'>
+            <div className='field-line'>
+              <Field name='title' component={this.renderTextField} label='Title' />
             </div>
-            <div className="field-line">
+            <div className='field-line'>
               <Field
-                name="category"
+                name='category'
                 component={this.renderSelectField}
-                label="Category"
+                label='Category'
               >
-                <MenuItem value="environment" primaryText="Environment" />
-                <MenuItem value="finance" primaryText="Finance" />
-                <MenuItem value="employment" primaryText="Employment" />
-                <MenuItem value="civil_rights" primaryText="Civil Rights" />
-                <MenuItem value="product_defects" primaryText="Product Defects" />
-                <MenuItem value="defective_drugs" primaryText="Defective Drugs" />
+                <MenuItem value='environment' primaryText='Environment' />
+                <MenuItem value='finance' primaryText='Finance' />
+                <MenuItem value='employment' primaryText='Employment' />
+                <MenuItem value='civil_rights' primaryText='Civil Rights' />
+                <MenuItem value='product_defects' primaryText='Product Defects' />
+                <MenuItem value='dangerous_drugs' primaryText='Dangerous Drugs' />
               </Field>
             </div>
-            <div className="field-line">
+            <div className='field-line'>
               <Field
-                name="description"
+                name='description'
                 component={this.renderTextField}
-                label="Description"
-                multiLine={true}
+                label='Description'
+                multiLine
                 rows={5}
               />
             </div>
           </div>
-          <div className="button-line">
+          <div className='button-line'>
             <RaisedButton
-              type="submit"
-              label="Submit"
+              type='submit'
+              label='Submit'
               disabled={pristine || submitting}
-              className="button"
+              className='button'
             />
             {this.renderSpinner()}
           </div>
         </form >
       </div >
-    )
+    );
   }
 }
 
@@ -104,9 +103,8 @@ const mapStateToProps = ({ }) => ({
 });
 
 Form = reduxForm({
-  form: 'Form',
+  form: 'Form'
 })(Form);
-
 
 export default connect(mapStateToProps)(Form);
 

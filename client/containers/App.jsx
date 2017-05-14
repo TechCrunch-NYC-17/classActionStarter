@@ -15,24 +15,24 @@ class App extends Component {
     const currentUser = getUsername();
     const auth = isUserAuthenticated();
     return (
-      <div>
+      <div className='container'>
         <Header
           location={this.props.location.pathname}
           auth={auth}
           logOut={this.handleLogOut}
           handleToggle={this.handleToggle}
           handleClick={this.handleClick}
-          handleTitleClick={() => this.props.history.push('/')}       
-        />
+          handleTitleClick={() => this.props.history.push('/')}
+          />
         <LeftNav
           auth={auth}
           user={currentUser}
           open={this.props.open}
           handleToggle={this.handleToggle}
-        />
-        <div>
+          />
+        <div className='children'>
           {this.props.children}
-        </div>  
+        </div>
       </div>
     );
   }

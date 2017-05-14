@@ -3,6 +3,30 @@ import { withRouter } from 'react-router';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 
+
+const styles = {
+  appBar: {
+    backgroundColor: 'white',
+    cursor: 'pointer',
+    position: 'fixed',
+    height: '70px'
+  },
+  title: {
+    color: 'black',
+    opacity: 1,
+    fontFamily: 'Source Sans Pro',
+    fontSize: '50px',
+    marginLeft: '30px'
+  },
+  button: {
+    color: 'grey'
+  },
+  buttonLabel: {
+    fontSize: '17px'
+  }
+};
+
+
 const Header = ({ handleTitleClick, handleClick, logOut, handleToggle, auth, location }) => {
   const handleTouchTap = (label) => {
     history.push(label);
@@ -13,6 +37,8 @@ const Header = ({ handleTitleClick, handleClick, logOut, handleToggle, auth, loc
       <FlatButton
         label={label}
         onTouchTap={() => handleTouchTap(path)}
+        style={styles.button}
+        labelStyle={styles.buttonLabel}
       />
     );
     if (label === 'Log Out') return cloneElement(flatButton, { onTouchTap: logOut });
@@ -20,9 +46,11 @@ const Header = ({ handleTitleClick, handleClick, logOut, handleToggle, auth, loc
   };
 
   const renderAppBar = (label, path) => (
-    <div id='appBar' className='app-bar-container'>
+    <div className='app-bar-container'>
       <AppBar
         title='Class Action Starter'
+        style={styles.appBar}
+        titleStyle={styles.title}        
         onLeftIconButtonTouchTap={handleToggle}
         onTitleTouchTap={handleTitleClick}
         iconClassNameLeft='app-bar-left-icon'
