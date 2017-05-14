@@ -1,5 +1,6 @@
 import React from 'react';
 import Dialog from 'material-ui/Dialog';
+import { withRouter } from 'react-router-dom'
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Field, reduxForm } from 'redux-form';
@@ -7,6 +8,9 @@ import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import store from '../index';
 import { connect } from 'react-redux';
+
+import { postSignUp } from '../actions/index';
+
 class SignUp extends React.Component {
   state = {
     open: false
@@ -15,6 +19,13 @@ class SignUp extends React.Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+  onSubmit = (inputs) => {
+     this.props.postSignUp(inputs)
+      .then((data) => {
+        console.log(data)
+        this.props.history.push('/dashboard')
+      });
+  }
   renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
     <TextField
       hintText={label}
@@ -37,7 +48,7 @@ class SignUp extends React.Component {
   );
 
   render() {
-    const { pristine, submitting, touch, field, errors } = this.props;
+    const { handleSubmit, pristine, submitting, touch, field, errors } = this.props;
     return (
       <Dialog
         title='SignUp'
@@ -45,16 +56,16 @@ class SignUp extends React.Component {
         open={this.props.open}
         onRequestClose={this.handleClose}
       >
-        <form className='form'>
+        <form onSubmit={handleSubmit(this.onSubmit)} className='form'>
           <div className='fields'>
             <div className='field-line'>
-              <Field type='email' component={this.renderTextField} label='Username' />
+              <Field name='email' type='email' component={this.renderTextField} label='Username' />
             </div>
             <div className='field-line'>
-              <Field name='Display Name' component={this.renderTextField} label='Display Name' />
+              <Field name='displayname' component={this.renderTextField} label='Display Name' />
             </div>
             <div className='field-line'>
-              <Field name='Password' type='password' component={this.renderTextField} label='Password' />
+              <Field name='password' type='password' component={this.renderTextField} label='Password' />
             </div>
           </div>
           <div className='button-line'>
@@ -96,5 +107,5 @@ SignUp = reduxForm({
   validate
 })(SignUp);
 
-export default connect(mapStateToProps)(SignUp);
+export default withRouter(connect(mapStateToProps, { postSignUp })(SignUp));
 
