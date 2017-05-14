@@ -17,16 +17,20 @@ class Dashboard extends Component {
     const username = getUsername();
     this.props.fetchMyList(username);
   }
-  renderList () {
-    return this.props.mylist.map(item => {
-      return (
-        <TableRow>
-          <TableRowColumn>{item.id}</TableRowColumn>
-          <TableRowColumn>{item.title}</TableRowColumn>
-          <TableRowColumn>{item.status}</TableRowColumn>
-        </TableRow>
-      );
-    });
+
+  renderList() {
+    console.log(this.props.mylist);
+    if (this.props.mylist) {
+      return this.props.mylist.map(item => {
+        return (
+          <TableRow>
+            <TableRowColumn>{item.id}</TableRowColumn>
+            <TableRowColumn>{item.title}</TableRowColumn>
+            <TableRowColumn>{item.status}</TableRowColumn>
+          </TableRow>
+        );
+      });
+    }
   }
   render () {
     return (
