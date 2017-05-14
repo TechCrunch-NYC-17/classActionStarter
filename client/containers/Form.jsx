@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import debounce from 'lodash/debounce';
 import { Field, reduxForm } from 'redux-form';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import Loading from 'react-loading';
-import store from '../index';
+
+import { postLawsuit } from '../actions/index';
+
 
 class Form extends Component {
 
   /* -- Calculates distance upon button click -- */
   onSubmit = (inputs) => {
-    // store.dispatch({ type: 'FETCHING', payload: true })
+    this.props.postLawsuit(inputs)
+      .then(() => this.props.history.push('/lawsuits'));
   }
 
   renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
@@ -50,7 +51,7 @@ class Form extends Component {
   }
 
   render = () => {
-    const { handleSubmit, pristine, submitting, touch, field } = this.props;
+    const { handleSubmit, pristine, submitting, touch, field, errors } = this.props;
 
     return (
       <div className='children'>
@@ -73,6 +74,9 @@ class Form extends Component {
                 <MenuItem value='product_defects' primaryText='Product Defects' />
                 <MenuItem value='dangerous_drugs' primaryText='Dangerous Drugs' />
               </Field>
+            </div>
+            <div className='field-line'>
+              <Field name='size' type='number' component={this.renderTextField} label='Desired No. of Participants' />
             </div>
             <div className='field-line'>
               <Field
@@ -102,9 +106,23 @@ class Form extends Component {
 const mapStateToProps = ({ }) => ({
 });
 
+const validate = (values) => {
+  const errors = {};
+  const requiredFields = ['title', 'category', 'description'];
+  requiredFields.forEach((field) => {
+    if (!values[field]) {
+      errors[field] = 'Required';
+    }
+  });
+
+  return errors;
+};
+
+
 Form = reduxForm({
-  form: 'Form'
+  form: 'Form',
+  validate
 })(Form);
 
-export default connect(mapStateToProps)(Form);
+export default connect(mapStateToProps, { postLawsuit })(Form);
 
