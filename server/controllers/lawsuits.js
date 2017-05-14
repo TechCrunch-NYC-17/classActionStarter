@@ -14,7 +14,6 @@ module.exports = {
 
   participate: ({ body }, res) => {
     const { lawsuitID, userID } = body;
-    console.log(body)
     db.insert({ lawsuitID, userID })
       .into('lawsuits_users')
       .then(() => res.status(201).end());

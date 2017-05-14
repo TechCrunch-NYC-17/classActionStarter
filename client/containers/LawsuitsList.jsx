@@ -20,7 +20,6 @@ class LawsuitsList extends Component {
 
   render () {
     if (this.props.lawsuits === undefined) return <div>loading</div>;
-    console.log(this.props)
     return (
       <div>
         {this.props.lawsuits.map((lawsuit, index) => (
