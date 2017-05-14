@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { deauthenticateUser } from '../modules/auth';
 
 export const TOGGLE_LEFT_NAV = 'TOGGLE_LEFT_NAV';
 export const POST_LAWSUIT = 'POST_LAWSUIT';
@@ -23,7 +24,15 @@ export const postLogin = obj => {
   console.log(obj)
   return dispatch => axios.post('/login', obj)
   .then(({ data }) => {
-    console.log(data)
+    console.log(data);
     dispatch({ type: 'POST_Login', payload: data });
   });
+};
+
+export const logoutUser = () => {
+  return dispatch => axios.get('/logout')
+    .then(({ data }) => deauthenticateUser())
+    .catch((error) => {
+      console.log('      ACTIONS/LOGIN_USER_SUCCESS | ', error);
+    });
 };
