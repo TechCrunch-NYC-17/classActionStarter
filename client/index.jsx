@@ -29,11 +29,11 @@ ReactDOM.render(
       <Provider store={store}>
         <App>
           <Switch>
+            <Route exact path='/' component={Home} />
             <Route path='/form' component={Form} />
             <Route path='/dashboard' component={Dashboard} />
             <Route path='/myaccount' component={myAccount} />
             <Route path='/lawsuits' component={LawsuitsList} />
-            <Route path='/home' component={Home} />
             <Route path='/login' component={Login} />
             <Route path='/auth' component={Auth} />
           </Switch>

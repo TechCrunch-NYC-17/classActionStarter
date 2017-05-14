@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { AutoRotatingCarousel, Slide } from 'material-auto-rotating-carousel';
 import { green400, green600, blue400, blue600, red400, red600 } from 'material-ui/styles/colors';
 const Home = () => {
+  console.log('here');
   var register = (p) => {
-    console.log(p)
-  }
+    console.log(p);
+  };
   var divStyle = {
     'height': '50%',
     'marginTop': '6.5%',
