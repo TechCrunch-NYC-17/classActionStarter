@@ -1,16 +1,46 @@
-import React, { Component } from 'react'
-import injectTapEventPlugin from 'react-tap-event-plugin'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import { toggleLeftNav } from '../actions/index';
+
+import { getUsername, isUserAuthenticated } from '../modules/auth';
+
+import LeftNav from '../components/LeftNav';
 
 class App extends Component {
   componentWillMount () {
-    injectTapEventPlugin()
+    injectTapEventPlugin();
+  }
+
+  handleToggle () {
+    this.props.toggleLeftNav(true);
   }
 
   render () {
+    const currentUser = getUsername();
+    const auth = isUserAuthenticated();
+    console.log(LeftNav);
     return (
-      <div>Hello World</div>
-    )
+      <div>
+        <LeftNav
+          auth={auth}
+          user={currentUser}
+          open={true}
+          handleToggle={this.handleToggle}
+        />
+        <div>Hello World</div>
+      </div>
+    );
   }
 }
 
-export default App
+function mapStateToProps ({ leftNavToggle }) {
+  return {
+    open: leftNavToggle.open
+  };
+}
+
+export default connect(mapStateToProps, {
+  toggleLeftNav
+})(App);
+
