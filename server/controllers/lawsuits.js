@@ -21,11 +21,21 @@ module.exports = {
 
   fetchParticipants: ({ body }, res) => {
     const { lawsuitID } = body;
-    db.raw(`SELECT username FROM users INNER JOIN lawsuits_users ON (lawsuitID = ${lawsuitID} AND userID = users.id`)
+    db.raw(`SELECT username FROM users INNER JOIN lawsuits_users ON (lawsuits_users.lawsuitID = ${lawsuitID} AND lawsuits_users.userID = users.id`)
+      .then((data) => {
+        console.log(data);
+        res.send(data);
+      });
+  },
+
+  fetchMyList: ({ body }, res) => {
+    const { userID } = body;
+    db.raw(`SELECT * FROM lawsuits INNER JOIN lawsuits_users ON (lawsuits_users.userID = ${userID} AND lawsuits_users.lawsuitID = lawsuits.id)`)
       .then((data) => {
         console.log(data);
         res.send(data);
       });
   }
 };
+
 
