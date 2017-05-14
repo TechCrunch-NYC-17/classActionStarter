@@ -8,7 +8,10 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers/index';
 
 import App from './containers/App';
-import Form from './containers/Form'
+import Form from './containers/Form';
+import Dashboard from './containers/Dashboard';
+import myAccount from './containers/MyAccount';
+// import LawsuitsList from './containers/LawsuitsList';
 
 const store = createStore(
   rootReducer,
@@ -22,6 +25,8 @@ ReactDOM.render(
         <div>
           <Route exact path='/' component={App} />
           <Route path='/form' component={Form} />
+          <Route path='/dashboard' component={Dashboard} />
+          <Route path='/myaccount' component={myAccount} />
         </div>
       </Provider>
     </Router>

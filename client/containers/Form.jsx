@@ -67,17 +67,35 @@ class Form extends Component {
                 component={this.renderSelectField}
                 label="Category"
               >
-                <MenuItem value="criminal" primaryText="Criminal" />
-                <MenuItem value="civil" primaryText="Civil" />
-                <MenuItem value="business" primaryText="Business" />
+                <MenuItem value="environment" primaryText="Environment" />
+                <MenuItem value="finance" primaryText="Finance" />
+                <MenuItem value="employment" primaryText="Employment" />
+                <MenuItem value="civil_rights" primaryText="Civil Rights" />
+                <MenuItem value="product_defects" primaryText="Product Defects" />
+                <MenuItem value="defective_drugs" primaryText="Defective Drugs" />
               </Field>
+            </div>
+            <div className="field-line">
+              <Field
+                name="description"
+                component={this.renderTextField}
+                label="Description"
+                multiLine={true}
+                rows={5}
+              />
             </div>
           </div>
           <div className="button-line">
+            <RaisedButton
+              type="submit"
+              label="Submit"
+              disabled={pristine || submitting}
+              className="button"
+            />
             {this.renderSpinner()}
           </div>
-        </form>
-      </div>
+        </form >
+      </div >
     )
   }
 }
