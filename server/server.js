@@ -29,10 +29,10 @@ passport.use(new FacebookStrategy({
   (accessToken, refreshToken, profile, done) => {
     passport.photo = `https://graph.facebook.com/v2.8/${profile.id}/picture`;
     process.nextTick(() => {
-      db.raw(`SELECT  * FROM fb_user where fbID = ${Number(profile.id)}`)
+      db.raw(`SELECT  * FROM users where username = ${Number(profile.id)}`)
         .then((result) => {
           if (result[0].length === 0) {
-            db.raw(`INSERT INTO fb_user VALUES (null, ${Number(profile.id)}, '${profile.displayName}')`)
+            db.raw(`INSERT INTO users VALUES (null, ${Number(profile.id)}, '${profile.displayName}', null)`)
               .then(() => {
                 return done(null, profile);
               });

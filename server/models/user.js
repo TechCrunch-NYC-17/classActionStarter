@@ -1,19 +1,19 @@
-const db = require('../db/config.js')
-const User = {}
+const db = require('../db/config.js');
+const User = {};
 
 User.findByUsername = (username, cb) => {
   return db.raw(`select * from users where username='${username}'`)
     .then((user) => {
-      return cb(user)
+      return cb(user);
     })
-    .catch((err) => { console.error(err) })
-}
+    .catch((err) => { console.error(err); });
+};
 
 User.addUser = (username, password, displayname) => {
-  return db('users').insert({username: username, password: password})
+  return db('users').insert({ username: username, displayname: displayname, password: password })
     .catch((err) => {
-      console.error(err)
-    })
-}
+      console.error(err);
+    });
+};
 
-module.exports = User
+module.exports = User;
