@@ -15,6 +15,10 @@ module.exports = (app, passport) => {
 
   app.post('/fetch/myaccount', users.fetchMyAccount);
 
+  app.post('/fetch/lawsuitinfo', lawsuits.fetchLawsuitInfo);
+
+  app.post('/fetch/lawsuitusers', lawsuits.fetchParticipants);
+
   app.post('/signup', passport.authenticate('local-signup', {
     failureRedirect: '/',
     failureFlash: true

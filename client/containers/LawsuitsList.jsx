@@ -6,6 +6,7 @@ import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'm
 import FlatButton from 'material-ui/FlatButton';
 import { participate } from '../actions/participateAction';
 import { getUserId } from '../modules/auth';
+import { fetchLawsuitInfo, fetchLawsuitUsers } from '../actions/lawsuitInfoAction';
 
 class LawsuitsList extends Component {
   componentWillMount() {
@@ -18,6 +19,16 @@ class LawsuitsList extends Component {
       lawsuitID: lawsuitId,
       userID: userId
     })
+
+    participate({
+      lawsuitID: lawsuitId,
+      userID: window.localStorage.userID
+    });
+  }
+
+  lawsuitInfo = (lawsuitId) => {
+    this.props.fetchLawsuitInfo({ lawsuitID: lawsuitId }).then(data => console.log(data));
+    this.props.fetchLawsuitUsers({ lawsuitID: lawsuitId }).then(data => console.log(data));
   }
 
   render() {
@@ -26,7 +37,7 @@ class LawsuitsList extends Component {
       <div className='children'>
         {this.props.lawsuits.map((lawsuit, index) => (
           <Card key={index} className='cards-container'>
-            <CardTitle title={lawsuit.title} subtitle={lawsuit.category} />
+            <CardTitle onClick={() => this.lawsuitInfo(lawsuit.id)} title={lawsuit.title} subtitle={lawsuit.category} />
             <CardText>
               {lawsuit.description}
             </CardText>
@@ -46,4 +57,4 @@ const mapStateToProps = ({ lawsuits }) => ({
   ...lawsuits
 });
 
-export default connect(mapStateToProps, { fetchLawsuitsList, participate })(LawsuitsList);
+export default connect(mapStateToProps, { fetchLawsuitsList, fetchLawsuitInfo, fetchLawsuitUsers })(LawsuitsList);
