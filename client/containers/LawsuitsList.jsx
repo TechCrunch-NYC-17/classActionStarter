@@ -33,11 +33,6 @@ class LawsuitsList extends Component {
 
   addParticipate = (lawsuitId) => {
     const userId = getUserId();
-    console.log(participate);
-    participate({
-      lawsuitID: lawsuitId,
-      userID: userId
-    });
 
     participate({
       lawsuitID: lawsuitId,
