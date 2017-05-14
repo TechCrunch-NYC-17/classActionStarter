@@ -8,6 +8,7 @@ import { fetchMyList } from '../actions/DashboardAction';
 class Dashboard extends Component {
   componentWillMount () {
     const userId = getUserId();
+    console.log(userId)
     this.props.fetchMyList(userId);
   }
 
@@ -15,7 +16,6 @@ class Dashboard extends Component {
     console.log('this.props.mylist in Dashboard', this.props.mylist);
     if (this.props.mylist) {
       return this.props.mylist.map(item => {
-        console.log(item);
         return (
           <Card>
             <CardHeader
@@ -23,7 +23,7 @@ class Dashboard extends Component {
               subtitle={item.category}
             />
             <CardMedia>
-              <img src='http://placehold.it/300x150g' />
+              <img src={`/photos/${item.id} ${item.filename}`} />
             </CardMedia>
             <CardActions>
               <FlatButton label='More' onClick={() => this.props.history.push(`/lawsuit/${item.id}`)} />
@@ -48,7 +48,7 @@ class Dashboard extends Component {
                 subtitle={item.category}
               />
               <CardMedia>
-                <img src='http://placehold.it/300x150g' />
+                <img src={`/photos/${item.lawsuitID} ${item.filename}`} />
               </CardMedia>
               <CardActions>
                 <FlatButton label='More' onClick={() => this.props.history.push(`/lawsuit/${item.id}`)} />
