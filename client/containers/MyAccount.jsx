@@ -6,14 +6,14 @@ import {
   TableRow,
   TableRowColumn
 } from 'material-ui/Table';
-import { getUsername } from '../modules/auth';
+import { getUserId } from '../modules/auth';
 import { fetchMyAccount } from '../actions/MyAccountAction';
 
 
 class MyAccount extends Component {
   componentWillMount () {
-    const username = getUsername();
-    this.props.fetchMyAccount(username);
+    const userId = getUserId();
+    this.props.fetchMyAccount(userId);
   }
 
   renderUserInfo () {
@@ -29,7 +29,7 @@ class MyAccount extends Component {
     }
   }
 
-  render() {
+  render () {
     return (
       <div className='children'>
         {this.renderUserInfo()}

@@ -22,15 +22,12 @@ class Dashboard extends Component {
             <CardMedia
               overlay={<CardTitle title={item.title} subtitle='Overlay subtitle' />}
             >
-              <div className='image'>
-                <img src='http://placehold.it/600x300g' />
-              </div>
+              <img src='http://placehold.it/600x300g' />
             </CardMedia>
             <CardText>
               {item.description}
             </CardText>
           </Card>
-
         );
       });
     }

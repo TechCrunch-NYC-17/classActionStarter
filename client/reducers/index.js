@@ -3,15 +3,17 @@ import dashboard from './dashboardReducer';
 import lawsuits from './lawsuitsListReducer';
 import user from './userReducer';
 import myAccount from './myAccountReducer';
-import LeftNavReducer from './leftNavReducer';
+import leftNavReducer from './leftNavReducer';
+import login from './loginReducer';
 import { reducer as formReducer } from 'redux-form';
 
 const rootReducer = combineReducers({
-  leftNavToggle: LeftNavReducer,
+  leftNavToggle: leftNavReducer,
   form: formReducer,
   lawsuits,
   dashboard,
   user,
+  login,
   myAccount
 });
 

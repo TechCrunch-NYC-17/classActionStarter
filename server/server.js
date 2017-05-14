@@ -96,6 +96,7 @@ passport.use('local-login', new LocalStrategy({
           if (resp) {
             passport.user = {id: result[0].id, displayname: result[0].displayname};
             passport.token = token.tokenGenerator(result[0].id);
+            console.log('resultttt : ', result[0]);
             return done(null, result[0]);
           } else {
             // return done(null, false, req.flash('loginMessage', 'Incorrect password.'))
