@@ -13,8 +13,8 @@ class LawsuitsList extends Component {
 
   addParticipate = (lawsuitId) => {
     participate({ 
-      lawsuitId: lawsuitId, 
-      userId: 1
+      lawsuitID: lawsuitId, 
+      userID: 1
     })
   }
 
