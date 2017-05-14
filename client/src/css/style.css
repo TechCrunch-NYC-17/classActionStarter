@@ -26,11 +26,17 @@ body {
 }
 
 .image {
-  width: 50%;
-  height: 50%;
+  width: 30%;
+  height: 30%;
 }
 
 #dashboard {
+  width: 30%;
+  height: 30%;
+}
+
+#lawsuit {
   width: 50%;
   height: 50%;
+  z-index: 0;
 }

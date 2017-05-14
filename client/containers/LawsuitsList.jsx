@@ -2,25 +2,25 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchLawsuitsList } from '../actions/lawsuitsListAction';
 import { withRouter } from 'react-router';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { participate } from '../actions/participateAction';
 import { getUserId } from '../modules/auth';
 
 class LawsuitsList extends Component {
-  componentWillMount () {
+  componentWillMount() {
     this.props.fetchLawsuitsList();
   }
 
   addParticipate = (lawsuitId) => {
     const userId = getUserId();
-    this.props.participate({ 
+    this.props.participate({
       lawsuitID: lawsuitId,
       userID: userId
     })
   }
 
-  render () {
+  render() {
     if (this.props.lawsuits === undefined) return <div>loading</div>;
     return (
       <div>
@@ -29,8 +29,9 @@ class LawsuitsList extends Component {
             <CardTitle title={lawsuit.title} subtitle={lawsuit.category} />
             <CardText>
               {lawsuit.description}
-          </CardText>
+            </CardText>
             <CardActions>
+              <FlatButton label='More' onClick={() => this.props.history.push(`/lawsuit/${lawsuit.id}`)} />
               <FlatButton label='Participate' onClick={() => this.addParticipate(lawsuit.id)} />
               <FlatButton label='Share' />
             </CardActions>

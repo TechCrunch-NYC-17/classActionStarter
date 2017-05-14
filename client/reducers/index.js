@@ -5,6 +5,7 @@ import user from './userReducer';
 import myAccount from './myAccountReducer';
 import leftNavReducer from './leftNavReducer';
 import login from './loginReducer';
+import lawsuit from './lawsuitReducer';
 import { reducer as formReducer } from 'redux-form';
 
 const rootReducer = combineReducers({
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   dashboard,
   user,
   myAccount,
-  login
+  login,
+  lawsuit
 });
 
 export default rootReducer;

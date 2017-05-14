@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardActions, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import { Card, CardHeader, CardActions, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import { getUserId } from '../modules/auth';
 import { fetchMyList } from '../actions/DashboardAction';
 
@@ -19,14 +19,13 @@ class Dashboard extends Component {
         console.log(item);
         return (
           <Card>
-            <CardMedia
-              overlay={<CardTitle title={item.title} subtitle='Overlay subtitle' />}
-            >
-              <img src='http://placehold.it/600x300g' />
+            <CardHeader
+              title={item.title}
+              subtitle={item.category}
+            />        
+            <CardMedia>
+              <img src='http://placehold.it/300x150g' />
             </CardMedia>
-            <CardText>
-              {item.description}
-            </CardText>
           </Card>
         );
       });

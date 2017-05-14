@@ -14,6 +14,7 @@ import Form from './containers/Form';
 import Dashboard from './containers/Dashboard';
 import myAccount from './containers/MyAccount';
 import LawsuitsList from './containers/LawsuitsList';
+import Lawsuit from './containers/Lawsuit';
 import Login from './containers/Login';
 
 const store = createStore(
@@ -34,6 +35,7 @@ ReactDOM.render(
             <Route path='/dashboard' component={Dashboard} />
             <Route path='/myaccount' component={myAccount} />
             <Route path='/lawsuits' component={LawsuitsList} />
+            <Route path='/lawsuit/:id' component={Lawsuit} />
             <Route path='/login' component={Login} />
             <Route path='/auth' component={Auth} />
           </Switch>
