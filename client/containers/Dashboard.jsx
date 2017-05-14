@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, CardHeader, CardActions, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 import { getUserId } from '../modules/auth';
 import { fetchMyList } from '../actions/DashboardAction';
 
@@ -26,15 +27,37 @@ class Dashboard extends Component {
             <CardMedia>
               <img src='http://placehold.it/300x150g' />
             </CardMedia>
+            <CardActions>
+              <FlatButton label='More' onClick={() => this.props.history.push(`/lawsuit/${item.id}`)} />
+              <FlatButton label='Share' />
+            </CardActions>            
           </Card>
         );
       });
     }
   }
   render() {
+    if (this.props.mylist === undefined) return <div>loading</div>;
     return (
       <div className='children' id='dashboard'>
-        {this.renderList()}
+        {this.props.mylist.map(item => {
+          console.log(item);
+          return (
+            <Card className='cards-container'>
+              <CardHeader
+                title={item.title}
+                subtitle={item.category}
+              />
+              <CardMedia>
+                <img src='http://placehold.it/300x150g' />
+              </CardMedia>
+              <CardActions>
+                <FlatButton label='More' onClick={() => this.props.history.push(`/lawsuit/${item.id}`)} />
+                <FlatButton label='Share' />
+              </CardActions>
+            </Card>
+          )
+        })}
       </div>
     );
   }

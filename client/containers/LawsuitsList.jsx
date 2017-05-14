@@ -23,7 +23,7 @@ class LawsuitsList extends Component {
   render() {
     if (this.props.lawsuits === undefined) return <div>loading</div>;
     return (
-      <div>
+      <div className='children'>
         {this.props.lawsuits.map((lawsuit, index) => (
           <Card key={index} className='cards-container'>
             <CardTitle title={lawsuit.title} subtitle={lawsuit.category} />
