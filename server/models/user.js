@@ -5,6 +5,7 @@ User.findByUsername = (username, cb) => {
   console.log(username)
   return db.raw(`select * from users where username='${username}'`)
     .then((user) => {
+      console.log('model user : ', user);
       return cb(user);
     })
     .catch((err) => { console.error(err); });

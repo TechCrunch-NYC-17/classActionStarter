@@ -8,8 +8,8 @@ import { fetchMyList } from '../actions/DashboardAction';
 
 class Dashboard extends Component {
   componentWillMount() {
-    const userID = getUserId();
-    this.props.fetchMyList(userID);
+    const userId = getUserId();
+    this.props.fetchMyList(userId);
   }
 
   renderList() {

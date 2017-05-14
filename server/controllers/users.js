@@ -2,6 +2,9 @@ const User = require('../models/user');
 
 module.exports = {
   fetchMyAccount: ({ body }, res) => {
-    User.findByUsername();
+    const { username } = body;
+    User.findByUsername(username, (data) => {
+      console.log('data : ', data);
+    });
   }
 };
