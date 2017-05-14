@@ -16,7 +16,7 @@ class LawsuitsList extends Component {
     this.state = { 
       open: false,
       info: {},
-      count: 0,
+      count: 1,
     };
   }
 
