@@ -22,7 +22,9 @@ class SignUp extends React.Component {
   onSubmit = (inputs) => {
      this.props.postSignUp(inputs)
       .then((data) => {
-        console.log(data)
+        console.log('this is data', this.props.user.user)
+        window.localStorage.setItem('token', this.props.user.user.token)
+        window.localStorage.setItem('userID', this.props.user.user.user.id[0])
         this.props.history.push('/dashboard')
       });
   }
@@ -87,7 +89,8 @@ class SignUp extends React.Component {
   }
 }
 
-const mapStateToProps = ({ }) => ({
+const mapStateToProps = ({ user }) => ({
+  user
 });
 
 const validate = (values) => {
