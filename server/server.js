@@ -62,7 +62,7 @@ passport.use('local-signup', new LocalStrategy({
                 console.log(err);
                 return;
               }
-              User.addUser(username, hash, req.body.displayName)
+              User.addUser(username, hash, req.body.displayname)
                 .then((data) => {
                   passport.user = {id: data, displayname: req.body.displayName};
                   passport.token = token.tokenGenerator(data);

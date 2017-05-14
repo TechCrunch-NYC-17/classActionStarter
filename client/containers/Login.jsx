@@ -8,7 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Loading from 'react-loading';
 import store from '../index';
 import { connect } from 'react-redux';
-import SignUp from './SignUp'
+import SignUp from './SignUp';
 class Login extends Component {
   constructor (props) {
     super(props);
