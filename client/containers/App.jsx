@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
-import injectTapEventPlugin from 'react-tap-event-plugin'
+import React, { Component } from 'react';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+import LawsuitsList from './LawSuitsList';
 
 class App extends Component {
   componentWillMount () {
@@ -8,7 +9,9 @@ class App extends Component {
 
   render () {
     return (
-      <div>Hello World</div>
+      <div>Hello World
+        <LawsuitsList />
+      </div>
     )
   }
 }
