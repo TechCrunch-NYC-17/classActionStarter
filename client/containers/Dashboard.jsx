@@ -5,15 +5,13 @@ import FlatButton from 'material-ui/FlatButton';
 import { getUserId } from '../modules/auth';
 import { fetchMyList } from '../actions/DashboardAction';
 
-
-
 class Dashboard extends Component {
-  componentWillMount() {
+  componentWillMount () {
     const userId = getUserId();
     this.props.fetchMyList(userId);
   }
 
-  renderList() {
+  renderList () {
     console.log('this.props.mylist in Dashboard', this.props.mylist);
     if (this.props.mylist) {
       return this.props.mylist.map(item => {
@@ -36,8 +34,12 @@ class Dashboard extends Component {
       });
     }
   }
+<<<<<<< HEAD
   render() {
     if (this.props.mylist === undefined) return <div>loading</div>;
+=======
+  render () {
+>>>>>>> set up form data
     return (
       <div className='children' id='dashboard'>
         {this.props.mylist.map(item => {

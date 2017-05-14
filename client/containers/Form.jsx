@@ -7,16 +7,40 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import Loading from 'react-loading';
-
+import axios from 'axios';
 import { postLawsuit } from '../actions/index';
 
-
 class Form extends Component {
+  constructor (props) {
+    super(props);
 
+    this.state = {
+      file: null
+    };
+  }
   /* -- Calculates distance upon button click -- */
   onSubmit = (inputs) => {
+    if (this.state.file) {
+      inputs.filename = this.state.file.name;
+    } else {
+      inputs.filename = null;
+    }
     this.props.postLawsuit(inputs)
-      .then(() => this.props.history.push('/lawsuits'));
+      .then(() => {
+        var data = new FormData();
+        data.append('file', this.state.file);
+        data.append('name', this.props.lawsuitID.lawsuitID[0]);
+        return axios.post('./uploadfile', data);
+      }).then(result => result).then(() => {
+        this.props.history.push('/lawsuits');
+      });
+  }
+
+  fileUpload = (e) => {
+    console.log(e.target.files[0]);
+    this.setState({
+      file: e.target.files[0]
+    });
   }
 
   renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
@@ -93,6 +117,9 @@ class Form extends Component {
             </div>
           </div>
           <div className='button-line'>
+            <label>Upload Picture:</label><input type='file' name='case' onChange={this.fileUpload} />
+          </div>
+          <div className='button-line'>
             <RaisedButton
               type='submit'
               label='Submit'
@@ -107,7 +134,8 @@ class Form extends Component {
   }
 }
 
-const mapStateToProps = ({ }) => ({
+const mapStateToProps = ({ lawsuitID }) => ({
+  lawsuitID
 });
 
 const validate = (values) => {
@@ -121,7 +149,6 @@ const validate = (values) => {
 
   return errors;
 };
-
 
 Form = reduxForm({
   form: 'Form',

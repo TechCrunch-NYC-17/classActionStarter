@@ -17,6 +17,7 @@ const User = require('./models/user');
 var app = express();
 var port = process.env.port || 8080;
 app.use(morgan('dev'));
+app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
 passport.serializeUser((user, done) => done(null, user));

@@ -70,4 +70,8 @@ module.exports = (app, passport) => {
   app.get('/get-info', (req, res) => {
     res.send({ token: passport.token, user: passport.user, picture: passport.photo });
   });
+
+  app.post('/uploadfile', (req, res) => {
+    console.log(req.files)
+  });
 };
