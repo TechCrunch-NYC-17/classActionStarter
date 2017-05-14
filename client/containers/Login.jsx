@@ -32,6 +32,7 @@ class Login extends Component {
         console.log('login : ', this.props.login);
         window.localStorage.setItem('token', this.props.login.login.token);
         window.localStorage.setItem('userID', this.props.login.login.user.id);
+        window.localStorage.setItem('username', this.props.login.login.user.displayname);
         this.props.history.push('/dashboard');
       });
   }

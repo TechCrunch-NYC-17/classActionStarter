@@ -20,6 +20,7 @@ class SignUp extends React.Component {
         console.log('this is data', this.props.user.user);
         window.localStorage.setItem('token', this.props.user.user.token);
         window.localStorage.setItem('userID', this.props.user.user.user.id[0]);
+        window.localStorage.setItem('username', this.props.user.user.displayname);
         this.props.history.push('/dashboard');
       });
   }
