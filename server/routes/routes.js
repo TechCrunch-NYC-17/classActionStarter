@@ -25,7 +25,7 @@ module.exports = (app, passport) => {
     failureRedirect: '/#/'
   }),
     (req, res) => {
-      console.log(passport.user);
+
       res.send({ token: passport.token, user: passport.user, picture: `https://robohash.org/${passport.user.displayname}` });
     });
 

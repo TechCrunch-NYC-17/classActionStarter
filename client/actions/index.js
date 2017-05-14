@@ -23,6 +23,7 @@ export const postLogin = obj => {
   console.log(obj)
   return dispatch => axios.post('/login', obj)
   .then(({ data }) => {
+    console.log(data)
     dispatch({ type: 'POST_Login', payload: data });
   });
 };
