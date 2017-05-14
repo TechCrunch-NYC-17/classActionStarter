@@ -3,9 +3,13 @@ create database classaction
 CREATE TABLE `classaction`.`users` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
-  `userscol` TEXT NULL,
+  `password` VARCHAR(45) NOT NULL
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC));
 
 
+CREATE TABLE `classaction`.`lawsuits_users` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `uID` INT NOT NULL,
+  `lawsuitID` INT NOT NULL,
+  PRIMARY KEY (`id`));
