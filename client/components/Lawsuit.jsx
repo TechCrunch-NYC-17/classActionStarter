@@ -4,7 +4,19 @@ import FlatButton from 'material-ui/FlatButton';
 
 const Lawsuit = ({ lawsuit }) => {
   return (
-    <div>{lawsuit.title}</div>
+  <Card>
+    <CardTitle title={lawsuit.title} subtitle={lawsuit.category} />
+    <CardText>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+      Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+      Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+    </CardText>
+    <CardActions>
+      <FlatButton label="Action1" />
+      <FlatButton label="Action2" />
+    </CardActions>
+  </Card>
   );
 };
 
