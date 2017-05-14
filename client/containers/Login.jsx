@@ -9,6 +9,9 @@ import Loading from 'react-loading';
 import store from '../index';
 import { connect } from 'react-redux';
 import SignUp from './SignUp';
+
+import { postLogin } from '../actions/index';
+
 class Login extends Component {
   constructor (props) {
     super(props);
@@ -23,10 +26,22 @@ class Login extends Component {
     textAlign: 'center',
     display: 'inline-block'
   }
+  onSubmit = (inputs) => {
+    this.props.postLogin(inputs)
+      .then((data) => {
+        console.log(this.props.user);
+        window.localStorage.setItem('token', this.props.user.user.token);
+        window.localStorage.setItem('userID', this.props.user.user.user.id[0]);
+        this.props.history.push('/dashboard');
+      });
+  }
   handleOpen = () => {
     this.setState({ open: true });
   };
 
+  handleClose = () => {
+    this.setState({ open: false });
+  };
   renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
     <TextField
       hintText={label}
@@ -59,19 +74,19 @@ class Login extends Component {
     }
   }
   render () {
-    const { pristine, submitting, touch, field, errors } = this.props;
+    const { handleSubmit, pristine, submitting, touch, field, errors } = this.props;
     return (
       <div className='children'>
         <Paper style={this.paperStyle} zDepth={5}>
           <div className='children'>
             <h1 className='header'>Start A Class Action Suit</h1>
-            <form className='form'>
+            <form onSubmit={handleSubmit(this.onSubmit)} className='form'>
               <div className='fields'>
                 <div className='field-line'>
-                  <Field type='email' component={this.renderTextField} label='Username' />
+                  <Field name='email' type='email' component={this.renderTextField} label='Email' />
                 </div>
                 <div className='field-line'>
-                  <Field name='Password' type='password' component={this.renderTextField} label='Password' />
+                  <Field name='password' type='password' component={this.renderTextField} label='Password' />
                 </div>
               </div>
               <div className='button-line'>
@@ -96,13 +111,15 @@ class Login extends Component {
             />
           </div >
         </Paper>
-        <SignUp open={this.state.open} />
+        <SignUp open={this.state.open} close={this.handleClose} />
+
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ }) => ({
+const mapStateToProps = ({ user }) => ({
+  user
 });
 
 const validate = (values) => {
@@ -122,4 +139,4 @@ Login = reduxForm({
   validate
 })(Login);
 
-export default connect(mapStateToProps)(Login);
+export default connect(mapStateToProps, { postLogin })(Login);

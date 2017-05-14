@@ -1,6 +1,6 @@
 import React from 'react';
 import Dialog from 'material-ui/Dialog';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Field, reduxForm } from 'redux-form';
@@ -12,20 +12,15 @@ import { connect } from 'react-redux';
 import { postSignUp } from '../actions/index';
 
 class SignUp extends React.Component {
-  state = {
-    open: false
-  };
 
-  handleClose = () => {
-    this.setState({ open: false });
-  };
+
   onSubmit = (inputs) => {
-     this.props.postSignUp(inputs)
+    this.props.postSignUp(inputs)
       .then((data) => {
-        console.log('this is data', this.props.user.user)
-        window.localStorage.setItem('token', this.props.user.user.token)
-        window.localStorage.setItem('userID', this.props.user.user.user.id[0])
-        this.props.history.push('/dashboard')
+        console.log('this is data', this.props.user.user);
+        window.localStorage.setItem('token', this.props.user.user.token);
+        window.localStorage.setItem('userID', this.props.user.user.user.id[0]);
+        this.props.history.push('/dashboard');
       });
   }
   renderTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
@@ -56,12 +51,12 @@ class SignUp extends React.Component {
         title='SignUp'
         modal={false}
         open={this.props.open}
-        onRequestClose={this.handleClose}
+        onRequestClose={this.close}
       >
         <form onSubmit={handleSubmit(this.onSubmit)} className='form'>
           <div className='fields'>
             <div className='field-line'>
-              <Field name='email' type='email' component={this.renderTextField} label='Username' />
+              <Field name='email' type='email' component={this.renderTextField} label='Email' />
             </div>
             <div className='field-line'>
               <Field name='displayname' component={this.renderTextField} label='Display Name' />
@@ -72,9 +67,9 @@ class SignUp extends React.Component {
           </div>
           <div className='button-line'>
             <RaisedButton
-              label='Sign Up'
+              label='Close'
               className='button'
-              onClick={this.handleOpen}
+              onClick={this.props.close}
             />
             <RaisedButton
               type='submit'
