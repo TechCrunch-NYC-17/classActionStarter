@@ -46,7 +46,7 @@ const Header = ({ handleTitleClick, handleClick, logOut, handleToggle, auth, loc
   const renderAppBar = (label, path) => (
     <div className='app-bar-container'>
       <AppBar
-        title='Class Action Starter'
+        title='ACTION STARTER'
         style={styles.appBar}
         titleStyle={styles.title}
         onLeftIconButtonTouchTap={handleToggle}

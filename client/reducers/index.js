@@ -5,7 +5,10 @@ import user from './userReducer';
 import myAccount from './myAccountReducer';
 import leftNavReducer from './leftNavReducer';
 import login from './loginReducer';
+import lawsuit from './lawsuitReducer';
+import lawsuitID from './lawsuitcreation';
 import { reducer as formReducer } from 'redux-form';
+import lawsuitinfo from './lawsuitInfoReducer';
 
 const rootReducer = combineReducers({
   leftNavToggle: leftNavReducer,
@@ -13,8 +16,11 @@ const rootReducer = combineReducers({
   lawsuits,
   dashboard,
   user,
+  myAccount,
   login,
-  myAccount
+  lawsuit,
+  lawsuitinfo,
+  lawsuitID
 });
 
 export default rootReducer;

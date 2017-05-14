@@ -4,12 +4,27 @@ module.exports = {
   fetch: (req, res) => {
     db.select().from('lawsuits').then(data => res.send(data));
   },
+  
+  fetchOne: ({ params }, res) => {
+    const lawsuitId = params.id;
+    console.log(lawsuitId);
+    db.select()
+      .from('lawsuits')
+      .where('id', lawsuitId)
+      .then((data) => {
+        console.log('fetchOne data : ', data);
+        res.send(data);
+      });
+  },
 
   post: ({ body }, res) => {
-    const { title, category, description } = body;
-    db.insert({ title, category, description })
+    const { title, category, size, description, filename } = body;
+    db.insert({ title, category, size, description, filename })
       .into('lawsuits')
-      .then(() => res.status(201).end());
+      .then((data) => {
+        console.log(data)
+        res.send(data);
+      });
   },
 
   participate: ({ body }, res) => {
@@ -35,7 +50,12 @@ module.exports = {
         console.log('data[0]', data[0]);
         res.send(data[0]);
       });
+  },
+
+  fetchLawsuitInfo: ({ body }, res) => {
+    const { lawsuitID } = body;
+    db.raw(`SELECT * FROM lawsuits where id = ${lawsuitID}`)
+      .then(data => res.send(data[0][0]));
   }
 };
-
 

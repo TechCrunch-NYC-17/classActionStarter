@@ -18,6 +18,8 @@ body {
 .children {
   padding-top: 50px;
   padding-left: 50px;
+  height: 100%;
+  width: 100%;
 }
 
 .cards-container {
@@ -26,11 +28,23 @@ body {
 }
 
 .image {
-  width: 50%;
-  height: 50%;
+  width: 30%;
+  height: 30%;
 }
 
 #dashboard {
+  background-image: url('/assets/splash_05.jpg');
+  background-size: cover;
+}
+
+
+#dashboard {
+  width: 40%;
+  height: 40%;
+}
+
+#lawsuit {
   width: 50%;
   height: 50%;
+  z-index: 0;
 }

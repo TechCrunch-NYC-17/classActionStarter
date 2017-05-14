@@ -1,41 +1,62 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardActions, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import { Card, CardHeader, CardActions, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 import { getUserId } from '../modules/auth';
 import { fetchMyList } from '../actions/DashboardAction';
 
-
-
 class Dashboard extends Component {
-  componentWillMount() {
+  componentWillMount () {
     const userId = getUserId();
+    console.log(userId)
     this.props.fetchMyList(userId);
   }
 
-  renderList() {
+  renderList () {
     console.log('this.props.mylist in Dashboard', this.props.mylist);
     if (this.props.mylist) {
       return this.props.mylist.map(item => {
-        console.log(item);
         return (
           <Card>
-            <CardMedia
-              overlay={<CardTitle title={item.title} subtitle='Overlay subtitle' />}
-            >
-              <img src='http://placehold.it/600x300g' />
+            <CardHeader
+              title={item.title}
+              subtitle={item.category}
+            />
+            <CardMedia>
+              <img src={`/photos/${item.id} ${item.filename}`} />
             </CardMedia>
-            <CardText>
-              {item.description}
-            </CardText>
+            <CardActions>
+              <FlatButton label='More' onClick={() => this.props.history.push(`/lawsuit/${item.id}`)} />
+              <FlatButton label='Share' />
+            </CardActions>
           </Card>
         );
       });
     }
   }
-  render() {
+
+  render () {
+    if (this.props.mylist === undefined) return <div>loading</div>;
     return (
       <div className='children' id='dashboard'>
-        {this.renderList()}
+        {this.props.mylist.map(item => {
+          console.log(item);
+          return (
+            <Card className='cards-container'>
+              <CardHeader
+                title={item.title}
+                subtitle={item.category}
+              />
+              <CardMedia>
+                <img src={`/photos/${item.lawsuitID} ${item.filename}`} />
+              </CardMedia>
+              <CardActions>
+                <FlatButton label='More' onClick={() => this.props.history.push(`/lawsuit/${item.id}`)} />
+                <FlatButton label='Share' />
+              </CardActions>
+            </Card>
+          );
+        })}
       </div>
     );
   }

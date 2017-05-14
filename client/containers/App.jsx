@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 import { connect } from 'react-redux';
-import { toggleLeftNav } from '../actions/index';
+import { toggleLeftNav, logoutUser } from '../actions/index';
 import { getUsername, isUserAuthenticated } from '../modules/auth';
 import LeftNav from '../components/LeftNav';
 import Header from '../components/Header';
@@ -10,6 +10,11 @@ class App extends Component {
   handleToggle = () => {
     this.props.toggleLeftNav(this.props.open);
   }
+
+  handleLogOut = () => this.props.logoutUser()
+    .then(() => {
+      this.props.history.push('/');
+    })
 
   render = () => {
     const currentUser = getUsername();
@@ -44,5 +49,5 @@ function mapStateToProps ({ leftNavToggle }) {
   };
 }
 
-export default withRouter(connect(mapStateToProps, { toggleLeftNav })(App));
+export default withRouter(connect(mapStateToProps, { toggleLeftNav, logoutUser })(App));
 
