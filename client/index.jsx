@@ -8,6 +8,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/index';
 import Home from './components/Home';
+import Auth from './components/Auth';
 import App from './containers/App';
 import Form from './containers/Form';
 import Dashboard from './containers/Dashboard';
@@ -28,12 +29,13 @@ ReactDOM.render(
       <Provider store={store}>
         <App>
           <Switch>
+            <Route exact path='/' component={Home} />
             <Route path='/form' component={Form} />
             <Route path='/dashboard' component={Dashboard} />
             <Route path='/myaccount' component={myAccount} />
             <Route path='/lawsuits' component={LawsuitsList} />
-            <Route path='/home' component={Home} />
             <Route path='/login' component={Login} />
+            <Route path='/auth' component={Auth} />
           </Switch>
         </App>
       </Provider>

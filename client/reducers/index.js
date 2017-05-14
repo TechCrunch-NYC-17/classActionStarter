@@ -13,8 +13,8 @@ const rootReducer = combineReducers({
   lawsuits,
   dashboard,
   user,
-  login,
-  myAccount
+  myAccount,
+  login
 });
 
 export default rootReducer;
