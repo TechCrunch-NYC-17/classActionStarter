@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import lawsuits from './LawsuitsListReducer';
 import dashboard from './dashboardReducer';
+import lawsuits from './lawsuitsListReducer';
 
 import LeftNavReducer from './leftNavReducer';
 import { reducer as formReducer } from 'redux-form';

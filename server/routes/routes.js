@@ -59,4 +59,6 @@ module.exports = (app, passport) => {
   app.get('/get-info', (req, res) => {
     res.send({ token: passport.token, user: passport.user, picture: passport.photo });
   });
+
+  app.get('/participate', lawsuits.participate);
 };
