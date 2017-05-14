@@ -80,18 +80,19 @@ passport.use('local-signup', new LocalStrategy({
 ));
 
 passport.use('local-login', new LocalStrategy({
-  usernameField: 'username',
+  usernameField: 'email',
   passwordField: 'password',
   passReqToCallback: true
 },
-  (req, username, password, done) => {
-    User.findByUsername(username, (result) => {
+  (req, email, password, done) => {
+    User.findByUsername(email, (result) => {
       if (result[0].length === 0) {
         return done(null, false, req.flash('loginMessage', 'User not found.'));
       } else {
         result = JSON.parse(JSON.stringify(result[0]));
         bcrypt.compare(password, result[0].password, (err, resp) => {
           if (err) console.error(err);
+          console.log(resp)
           if (resp) {
             passport.user = {id: result[0].id, displayname: result[0].displayname};
             passport.token = token.tokenGenerator(result[0].id);

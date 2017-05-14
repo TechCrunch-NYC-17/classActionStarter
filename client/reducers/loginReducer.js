@@ -1,6 +1,6 @@
 export default function (state = {}, action) {
   switch (action.type) {
-    case 'POST_SignUp' : {
+    case 'POST_Login' : {
       return { ...state, user: action.payload };
     }
   }
