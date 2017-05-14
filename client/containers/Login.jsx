@@ -29,9 +29,9 @@ class Login extends Component {
   onSubmit = (inputs) => {
     this.props.postLogin(inputs)
       .then((data) => {
-        console.log(this.props.user);
-        window.localStorage.setItem('token', this.props.user.user.token);
-        window.localStorage.setItem('userID', this.props.user.user.user.id[0]);
+        console.log('login : ', this.props.login);
+        window.localStorage.setItem('token', this.props.login.login.token);
+        window.localStorage.setItem('userID', this.props.login.login.user.id);
         this.props.history.push('/dashboard');
       });
   }
@@ -118,9 +118,10 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({
-  user
-});
+const mapStateToProps = ({ login }) => {
+  console.log('login props : ', login);
+  return ({ login });
+};
 
 const validate = (values) => {
   const errors = {};

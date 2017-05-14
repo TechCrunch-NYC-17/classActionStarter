@@ -1,5 +1,7 @@
 const lawsuits = require('../controllers/lawsuits');
+const users = require('../controllers/users');
 const token = require('../jwt/jwt');
+
 module.exports = (app, passport) => {
   app.get('/fetch/lawsuits', lawsuits.fetch);
 
@@ -8,6 +10,8 @@ module.exports = (app, passport) => {
   app.post('/post/participate', lawsuits.participate);
 
   app.post('/fetch/mylist', lawsuits.fetchMyList);
+
+  app.post('/fetch/myaccount', users.fetchMyAccount);
 
   app.post('/signup', passport.authenticate('local-signup', {
     failureRedirect: '/',
