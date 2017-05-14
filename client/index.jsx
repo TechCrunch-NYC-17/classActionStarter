@@ -13,6 +13,7 @@ import Form from './containers/Form';
 import Dashboard from './containers/Dashboard';
 import myAccount from './containers/MyAccount';
 import LawsuitsList from './containers/LawsuitsList';
+import Login from './containers/Login';
 
 const store = createStore(
   rootReducer,
@@ -32,6 +33,7 @@ ReactDOM.render(
             <Route path='/myaccount' component={myAccount} />
             <Route path='/lawsuits' component={LawsuitsList} />
             <Route path='/home' component={Home} />
+            <Route path='/login' component={Login} />
           </Switch>
         </App>
       </Provider>
