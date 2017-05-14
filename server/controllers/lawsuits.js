@@ -4,6 +4,18 @@ module.exports = {
   fetch: (req, res) => {
     db.select().from('lawsuits').then(data => res.send(data));
   },
+  
+  fetchOne: ({ params }, res) => {
+    const lawsuitId = params.id;
+    console.log(lawsuitId);
+    db.select()
+      .from('lawsuits')
+      .where('id', lawsuitId)
+      .then((data) => {
+        console.log('fetchOne data : ', data);
+        res.send(data);
+      });
+  },
 
   post: ({ body }, res) => {
     const { title, category, description } = body;

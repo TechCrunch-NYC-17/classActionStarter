@@ -5,6 +5,8 @@ const token = require('../jwt/jwt');
 module.exports = (app, passport) => {
   app.get('/fetch/lawsuits', lawsuits.fetch);
 
+  app.get('/fetch/lawsuits/:id', lawsuits.fetchOne);
+
   app.post('/post/lawsuit', lawsuits.post);
 
   app.post('/post/participate', lawsuits.participate);
