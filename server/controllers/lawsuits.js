@@ -47,6 +47,12 @@ module.exports = {
         console.log('data[0]', data[0]);
         res.send(data[0]);
       });
+  },
+
+  fetchLawsuitInfo: ({ body }, res) => {
+    const { lawsuitID } = body;
+    db.raw(`SELECT * FROM lawsuits where id = ${lawsuitID}`)
+      .then(data => res.send(data[0][0]));
   }
 };
 
