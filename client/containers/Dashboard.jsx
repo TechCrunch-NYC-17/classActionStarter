@@ -1,54 +1,45 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getUsername } from '../modules/auth';
+import { Card, CardActions, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import { getUserId } from '../modules/auth';
 import { fetchMyList } from '../actions/DashboardAction';
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn
-} from 'material-ui/Table';
+
 
 
 class Dashboard extends Component {
   componentWillMount() {
-    const username = getUsername();
-    this.props.fetchMyList(username);
+    const userID = getUserId();
+    console.log('user ID : ', userID);
+    this.props.fetchMyList(userID);
   }
 
   renderList() {
-    console.log(this.props.mylist);
+    console.log('this.props.mylist in Dashboard', this.props.mylist);
     if (this.props.mylist) {
       return this.props.mylist.map(item => {
+        console.log(item);
         return (
-          <TableRow>
-            <TableRowColumn>{item.id}</TableRowColumn>
-            <TableRowColumn>{item.title}</TableRowColumn>
-            <TableRowColumn>{item.status}</TableRowColumn>
-          </TableRow>
+          <Card>
+            <CardMedia
+              overlay={<CardTitle title={item.title} subtitle='Overlay subtitle' />}
+            >
+              <div className='image'>
+                <img src='http://placehold.it/600x300g' />
+              </div>
+            </CardMedia>
+            <CardText>
+              {item.description}
+            </CardText>
+          </Card>
+
         );
       });
     }
   }
   render() {
     return (
-      <div className='children'>
-        <Table
-          multiSelectable={true}
-        >
-          <TableHeader>
-            <TableRow>
-              <TableHeaderColumn>ID</TableHeaderColumn>
-              <TableHeaderColumn>Title</TableHeaderColumn>
-              <TableHeaderColumn>Status</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {this.renderList()}
-          </TableBody>
-        </Table>
+      <div className='children' id='dashboard'>
+        {this.renderList()}
       </div>
     );
   }

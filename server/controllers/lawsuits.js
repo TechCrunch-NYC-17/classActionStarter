@@ -21,7 +21,7 @@ module.exports = {
 
   fetchParticipants: ({ body }, res) => {
     const { lawsuitID } = body;
-    db.raw(`SELECT username FROM users INNER JOIN lawsuits_users ON (lawsuits_users.lawsuitID = ${lawsuitID} AND lawsuits_users.userID = users.id`)
+    db.raw(`SELECT username FROM users INNER JOIN lawsuits_users ON lawsuits_users.lawsuitID = ${lawsuitID} AND lawsuits_users.userID = users.id`)
       .then((data) => {
         console.log(data);
         res.send(data);
@@ -30,10 +30,10 @@ module.exports = {
 
   fetchMyList: ({ body }, res) => {
     const { userID } = body;
-    db.raw(`SELECT * FROM lawsuits INNER JOIN lawsuits_users ON (lawsuits_users.userID = ${userID} AND lawsuits_users.lawsuitID = lawsuits.id)`)
+    db.raw(`SELECT * FROM lawsuits INNER JOIN lawsuits_users ON lawsuits_users.userID = ${userID} AND lawsuits.id = lawsuits_users.lawsuitID`)
       .then((data) => {
-        console.log(data);
-        res.send(data);
+        console.log('data[0]', data[0]);
+        res.send(data[0]);
       });
   }
 };
