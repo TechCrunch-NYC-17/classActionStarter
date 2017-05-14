@@ -76,6 +76,9 @@ class Form extends Component {
               </Field>
             </div>
             <div className='field-line'>
+              <Field name='defendant' component={this.renderTextField} label='Defendant' />
+            </div>
+            <div className='field-line'>
               <Field name='size' type='number' component={this.renderTextField} label='Desired No. of Participants' />
             </div>
             <div className='field-line'>

@@ -1,9 +1,11 @@
 const lawsuits = require('../controllers/lawsuits');
 const token = require('../jwt/jwt');
 module.exports = (app, passport) => {
-  app.get('/fetchlawsuits', lawsuits.fetch);
+  app.get('/fetch/lawsuits', lawsuits.fetch);
 
-  app.post('/postlawsuit', lawsuits.post);
+  app.post('/post/lawsuit', lawsuits.post);
+
+  app.post('/post/participate', lawsuits.participate);
 
   app.post('/signup', passport.authenticate('local-signup', {
     failureRedirect: '/',
