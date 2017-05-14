@@ -18,6 +18,7 @@ export function getUserId () {
 export function deauthenticateUser () {
   window.localStorage.removeItem('token');
   window.localStorage.removeItem('username');
+  window.localStorage.removeItem('userID');
 }
 
 export function getToken () {
