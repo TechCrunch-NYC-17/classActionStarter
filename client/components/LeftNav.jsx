@@ -10,7 +10,7 @@ const LeftNav = ({ auth, open, handleToggle, history }) => {
     history.push(label);
   };
 
-  // const leftNavUnAuth = [{ link: '/login', label: 'Log In' }, { link: '/signup', label: 'Sign Up' }];
+  const leftNavUnAuth = [{ link: '/login', label: 'Log In' }, { link: '/signup', label: 'Sign Up' }];
   const leftNavAuth = [
     { link: '/dashboard', label: 'Dashboard' },
     { link: '/form', label: 'Start' },
@@ -35,9 +35,9 @@ const LeftNav = ({ auth, open, handleToggle, history }) => {
       </Drawer>
     );
   };
-  // if (!auth) {
-  //   return renderDrawer(leftNavUnAuth);
-  // }
+  if (!auth) {
+    return renderDrawer(leftNavUnAuth);
+  }
   return renderDrawer(leftNavAuth);
 };
 
