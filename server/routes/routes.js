@@ -7,6 +7,8 @@ module.exports = (app, passport) => {
 
   app.post('/post/participate', lawsuits.participate);
 
+  app.post('/fetch/mylist', lawsuits.fetchMyList);
+
   app.post('/signup', passport.authenticate('local-signup', {
     failureRedirect: '/',
     failureFlash: true
