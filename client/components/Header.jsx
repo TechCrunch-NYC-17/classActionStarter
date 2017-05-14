@@ -3,7 +3,6 @@ import { withRouter } from 'react-router';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 
-
 const styles = {
   appBar: {
     backgroundColor: 'white',
@@ -26,8 +25,7 @@ const styles = {
   }
 };
 
-
-const Header = ({ handleTitleClick, handleClick, logOut, handleToggle, auth, location }) => {
+const Header = ({ handleTitleClick, handleClick, logOut, handleToggle, auth, location, history }) => {
   const handleTouchTap = (label) => {
     history.push(label);
   };
@@ -50,7 +48,7 @@ const Header = ({ handleTitleClick, handleClick, logOut, handleToggle, auth, loc
       <AppBar
         title='Class Action Starter'
         style={styles.appBar}
-        titleStyle={styles.title}        
+        titleStyle={styles.title}
         onLeftIconButtonTouchTap={handleToggle}
         onTitleTouchTap={handleTitleClick}
         iconClassNameLeft='app-bar-left-icon'
