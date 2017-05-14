@@ -7,7 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/index';
-
+import Home from './components/Home';
 import App from './containers/App';
 import Form from './containers/Form';
 import Dashboard from './containers/Dashboard';
@@ -25,16 +25,15 @@ ReactDOM.render(
   <MuiThemeProvider>
     <Router history={hashHistory}>
       <Provider store={store}>
-        <div>
-          <App>
-            <Switch>
-              <Route path='/form' component={Form} />
-              <Route path='/dashboard' component={Dashboard} />
-              <Route path='/myaccount' component={myAccount} />
-              <Route path='/lawsuits' component={LawsuitsList} />
-            </Switch>
-          </App>
-        </div>
+        <App>
+          <Switch>
+            <Route path='/form' component={Form} />
+            <Route path='/dashboard' component={Dashboard} />
+            <Route path='/myaccount' component={myAccount} />
+            <Route path='/lawsuits' component={LawsuitsList} />
+            <Route path='/home' component={Home} />
+          </Switch>
+        </App>
       </Provider>
     </Router>
   </MuiThemeProvider>
