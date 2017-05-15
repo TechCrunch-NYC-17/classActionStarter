@@ -3,10 +3,8 @@ import Paper from 'material-ui/Paper';
 import { Field, reduxForm } from 'redux-form';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import Loading from 'react-loading';
-import store from '../index';
 import { connect } from 'react-redux';
 import SignUp from './SignUp';
 
@@ -53,7 +51,6 @@ class Login extends Component {
   onSubmit = (inputs) => {
     this.props.postLogin(inputs)
       .then((data) => {
-        console.log('login : ', this.props.login);
         window.localStorage.setItem('token', this.props.login.login.token);
         window.localStorage.setItem('userID', this.props.login.login.user.id);
         window.localStorage.setItem('username', this.props.login.login.user.displayname);
@@ -99,11 +96,11 @@ class Login extends Component {
     }
   }
   render () {
-    const { handleSubmit, pristine, submitting, touch, field, errors } = this.props;
+    const { handleSubmit, pristine, submitting } = this.props;
     return (
       <div className='children' style={this.backgroundStyle}>
         <div style={this.loginBox}>
-        <Paper style={this.paperStyle} zDepth={5}>
+          <Paper style={this.paperStyle} zDepth={5}>
             <h1 className='header'>Login</h1>
             <form onSubmit={handleSubmit(this.onSubmit)} className='form'>
               <div className='fields'>
@@ -135,7 +132,7 @@ class Login extends Component {
               className='button'
             />
           </Paper>
-        </div>  
+        </div>
         <SignUp open={this.state.open} close={this.handleClose} />
 
       </div>
@@ -164,5 +161,15 @@ Login = reduxForm({
   form: 'Form',
   validate
 })(Login);
+
+Login.propTypes = {
+  handleSubmit: React.PropTypes.any.isRequired,
+  pristine: React.PropTypes.any.isRequired,
+  submitting: React.PropTypes.any.isRequired,
+  history: React.PropTypes.array.isRequired,
+  fetching: React.PropTypes.bool.isRequired,
+  postLogin: React.PropTypes.func.isRequired,
+  login: React.PropTypes.any.isRequired
+};
 
 export default connect(mapStateToProps, { postLogin })(Login);

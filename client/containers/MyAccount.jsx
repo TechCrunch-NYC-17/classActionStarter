@@ -48,4 +48,9 @@ const mapStateToProps = ({ myAccount }) => ({
   myaccount: myAccount.myaccount
 });
 
+MyAccount.propTypes = {
+  fetchMyAccount: React.PropTypes.func.isRequired,
+  myaccount: React.PropTypes.any.isRequired
+};
+
 export default connect(mapStateToProps, { fetchMyAccount })(MyAccount);

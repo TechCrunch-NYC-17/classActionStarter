@@ -1,18 +1,15 @@
 import React from 'react';
 import Dialog from 'material-ui/Dialog';
 import { withRouter } from 'react-router-dom';
-import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Field, reduxForm } from 'redux-form';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
-import store from '../index';
 import { connect } from 'react-redux';
 
 import { postSignUp } from '../actions/index';
 
 class SignUp extends React.Component {
-
 
   onSubmit = (inputs) => {
     this.props.postSignUp(inputs)
@@ -45,8 +42,8 @@ class SignUp extends React.Component {
     />
   );
 
-  render() {
-    const { handleSubmit, pristine, submitting, touch, field, errors } = this.props;
+  render () {
+    const { handleSubmit, pristine, submitting } = this.props;
     return (
       <Dialog
         title='SignUp'
@@ -105,6 +102,17 @@ SignUp = reduxForm({
   form: 'Form',
   validate
 })(SignUp);
+
+SignUp.propTypes = {
+  handleSubmit: React.PropTypes.any.isRequired,
+  pristine: React.PropTypes.any.isRequired,
+  submitting: React.PropTypes.any.isRequired,
+  history: React.PropTypes.array.isRequired,
+  open: React.PropTypes.bool.isRequired,
+  close: React.PropTypes.func.isRequired,
+  postSignUp: React.PropTypes.func.isRequired,
+  user: React.PropTypes.any.isRequired
+};
 
 export default withRouter(connect(mapStateToProps, { postSignUp })(SignUp));
 

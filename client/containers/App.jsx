@@ -49,5 +49,14 @@ function mapStateToProps ({ leftNavToggle }) {
   };
 }
 
+App.propTypes = {
+  toggleLeftNav: React.PropTypes.func.isRequired,
+  children: React.PropTypes.any.isRequired,
+  logoutUser: React.PropTypes.any.isRequired,
+  location: React.PropTypes.any.isRequired,
+  history: React.PropTypes.array.isRequired,
+  open: React.PropTypes.bool.isRequired
+};
+
 export default withRouter(connect(mapStateToProps, { toggleLeftNav, logoutUser })(App));
 
