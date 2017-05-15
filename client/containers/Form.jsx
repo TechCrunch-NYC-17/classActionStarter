@@ -167,5 +167,6 @@ Form.propTypes = {
   fetching: React.PropTypes.bool.isRequired,
   lawsuitID: React.PropTypes.any.isRequired
 };
+
 export default withRouter(connect(mapStateToProps, { postLawsuit })(Form));
 
