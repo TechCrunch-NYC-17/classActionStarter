@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import Snackbar from 'material-ui/Snackbar';
-import { Card, CardText, CardTitle, CardMedia, CardHeader } from 'material-ui/Card';
+import { Card, CardText, CardTitle, CardMedia } from 'material-ui/Card';
 
-import { isUserAuthenticated, getUsername } from '../modules/auth';
+import { isUserAuthenticated } from '../modules/auth';
 import { getLawsuit } from '../actions/index';
 
 class Lawsuit extends Component {
-  componentWillMount() {
+  componentWillMount () {
     const lawsuitId = this.props.match.params.id;
-    console.log('Lawsuit : ', lawsuitId);
     if (!isUserAuthenticated() || !lawsuitId) {
       this.props.history.push('/home');
     } else {
@@ -18,10 +16,10 @@ class Lawsuit extends Component {
     }
   }
 
-  renderLawsuit() {
+  renderLawsuit () {
     if (this.props.lawsuit.lawsuit) {
       const { id, title, category, size, description, filename } = this.props.lawsuit.lawsuit;
-      console.log(id, filename)
+      console.log(id, filename);
       return (
         <Card>
           <CardMedia>
@@ -30,13 +28,13 @@ class Lawsuit extends Component {
           <CardTitle title={title} subtitle={category} />
           <CardText>
             {description}
-            </CardText>
+          </CardText>
         </Card>
-      )
+      );
     }
   }
 
-  render() {
+  render () {
     return (
       <div className='children' id='lawsuit'>
         {this.renderLawsuit()}
@@ -47,7 +45,14 @@ class Lawsuit extends Component {
 
 const mapStateToProps = ({ lawsuit }) => ({
   lawsuit
-})
+});
+
+Lawsuit.propTypes = {
+  lawsuit: React.PropTypes.any.isRequired,
+  history: React.PropTypes.array.isRequired,
+  getLawsuit: React.PropTypes.func.isRequired,
+  match: React.PropTypes.any.isRequired
+};
 
 export default withRouter(connect(mapStateToProps, { getLawsuit })(Lawsuit));
 
