@@ -36,4 +36,9 @@ class Auth extends Component {
     );
   }
 }
+
+Auth.propTypes = {
+  history: React.PropTypes.array.isRequired
+};
+
 export default withRouter(Auth);
