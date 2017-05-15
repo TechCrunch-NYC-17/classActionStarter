@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardHeader, CardActions, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import { Card, CardHeader, CardActions, CardMedia } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import { getUserId } from '../modules/auth';
 import { fetchMyList } from '../actions/DashboardAction';
@@ -8,7 +8,6 @@ import { fetchMyList } from '../actions/DashboardAction';
 class Dashboard extends Component {
   componentWillMount () {
     const userId = getUserId();
-    console.log(userId)
     this.props.fetchMyList(userId);
   }
 
@@ -65,5 +64,11 @@ class Dashboard extends Component {
 const mapStateToProps = ({ dashboard }) => ({
   mylist: dashboard.mylist
 });
+
+Dashboard.propTypes = {
+  mylist: React.PropTypes.array.isRequired,
+  history: React.PropTypes.any.isRequired,
+  fetchMyList: React.PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps, { fetchMyList })(Dashboard);
