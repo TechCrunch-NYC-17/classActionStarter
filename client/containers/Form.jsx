@@ -29,7 +29,6 @@ class Form extends Component {
       .then(() => {
         var data = new FormData();
         data.append('file', this.state.file);
-        console.log(this.props.lawsuitID)
         return axios.post('./uploadfile', data, {
           headers: {
             'lawsuit': `${this.props.lawsuitID.lawsuitID[0]}`
@@ -80,7 +79,7 @@ class Form extends Component {
   }
 
   render = () => {
-    const { handleSubmit, pristine, submitting, touch, field, errors } = this.props;
+    const { handleSubmit, pristine, submitting } = this.props;
 
     return (
       <div className='children'>
@@ -159,5 +158,14 @@ Form = reduxForm({
   validate
 })(Form);
 
+Form.propTypes = {
+  handleSubmit: React.PropTypes.any.isRequired,
+  pristine: React.PropTypes.any.isRequired,
+  submitting: React.PropTypes.any.isRequired,
+  postLawsuit: React.PropTypes.func.isRequired,
+  history: React.PropTypes.array.isRequired,
+  fetching: React.PropTypes.bool.isRequired,
+  lawsuitID: React.PropTypes.any.isRequired
+};
 export default withRouter(connect(mapStateToProps, { postLawsuit })(Form));
 

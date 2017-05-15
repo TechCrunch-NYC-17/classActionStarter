@@ -67,7 +67,7 @@ const mapStateToProps = ({ dashboard }) => ({
 
 Dashboard.propTypes = {
   mylist: React.PropTypes.array.isRequired,
-  history: React.PropTypes.any.isRequired,
+  history: React.PropTypes.array.isRequired,
   fetchMyList: React.PropTypes.func.isRequired
 };
 
