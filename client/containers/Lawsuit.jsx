@@ -18,7 +18,7 @@ class Lawsuit extends Component {
 
   renderLawsuit () {
     if (this.props.lawsuit.lawsuit) {
-      const { id, title, category, size, description, filename } = this.props.lawsuit.lawsuit;
+      const { id, title, category, description, filename } = this.props.lawsuit.lawsuit;
       console.log(id, filename);
       return (
         <Card>
