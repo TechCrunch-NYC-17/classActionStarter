@@ -51,7 +51,7 @@ const Header = ({ handleTitleClick, handleClick, logOut, handleToggle, auth, loc
         titleStyle={styles.title}
         onLeftIconButtonTouchTap={handleToggle}
         onTitleTouchTap={handleTitleClick}
-        iconClassNameLeft='app-bar-left-icon'
+        iconStyleLeft={{ background: 'black' }}
         iconElementRight={renderFlatButton(label, path)}
         zDepth={0}
       />
