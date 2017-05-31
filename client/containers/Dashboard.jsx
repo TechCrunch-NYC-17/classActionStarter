@@ -34,10 +34,20 @@ class Dashboard extends Component {
     }
   }
 
-  render () {
+  backgroundStyle = {
+    backgroundImage: "url('/assets/splash_05.jpg')",
+    backgroundSize: 'cover',
+    height: '80%',
+    width: '100%',
+    marginTop: '3%',
+    marginRight: '3%',
+    opacity: '.7'
+  }
+
+  render() {
     if (this.props.mylist === undefined) return <div>loading</div>;
     return (
-      <div className='children' id='dashboard'>
+      <div className='children' style={this.backgroundStyle} >
         {this.props.mylist.map(item => {
           console.log(item);
           return (
